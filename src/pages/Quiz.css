@@ -1,0 +1,195 @@
+.quiz-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667db6 0%, #0082c8 100%, #0082c8 100%, #667db6 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+.quiz-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 700px;
+    min-height: 500px; /* Tăng chiều cao tối thiểu một chút */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- PHẦN CÂU HỎI --- */
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question-count {
+    font-size: 16px;
+    color: #888;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-exit-quiz {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.question-text {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    min-height: 60px; /* Giữ khung không bị nhảy */
+}
+
+/* --- PHẦN ĐÁP ÁN --- */
+.answer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.answer-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    position: relative;
+}
+
+.answer-btn:hover {
+    background-color: #e3f2fd;
+    border-color: #90caf9;
+}
+
+/* Style cho đáp án ĐANG ĐƯỢC CHỌN */
+.answer-btn.selected {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+    color: #0d47a1;
+    font-weight: 500;
+    box-shadow: 0 0 0 1px #2196f3; /* Viền sáng hơn */
+}
+
+/* --- THANH ĐIỀU HƯỚNG DƯỚI (MỚI) --- */
+.navigation-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-nav {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.btn-prev {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.btn-prev:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.btn-prev:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    visibility: hidden; /* Ẩn luôn nút back nếu ở trang 1 */
+}
+
+.btn-next {
+    background-color: #2196f3;
+    color: white;
+}
+
+.btn-next:hover:not(:disabled) {
+    background-color: #1976d2;
+    transform: translateX(3px);
+}
+
+/* Khi nút Next bị disable (chưa chọn đáp án) */
+.btn-next:disabled {
+    background-color: #bbdefb;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- MÀN HÌNH KẾT QUẢ (Giữ nguyên) --- */
+.score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.score-text {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.score-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-restart, .btn-home {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-restart { background-color: #2196f3; color: white; }
+.btn-home { background-color: #6c757d; color: white; }
