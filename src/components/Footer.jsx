@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Cột 1 */}
         <div className="footer-column">
           <h3>Tư Tưởng Hồ Chí Minh</h3>
-          <p className="subtitle">Về ĐCSVN & Nhà nước của Dân</p>
+          <p className="subtitle">Về ĐCSVN & Nhà nước của Nhân dân, do Nhân dân, vì Nhân dân.</p>
           <div className="quote-box">
             “Nước ta là nước dân chủ. Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều của dân... Chính quyền từ xã đến Chính phủ trung ương do dân cử ra.”
           </div>
@@ -30,10 +30,16 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Thông tin nhóm thực hiện</h3>
           <ul className="footer-info">
-            <li><span>Môn học:</span> Tư tưởng Hồ Chí Minh (HCM202)</li>
-            <li><span>Chủ đề:</span> Xây dựng Nhà nước pháp quyền</li>
-            <li><span>GVHD:</span> Nguyễn Trung Hiếu</li>
-            <li><span>Thực hiện:</span> Nhóm 4</li>
+            <li><span>Môn học:</span> HCM202 - Tư tưởng Hồ Chí Minh</li>
+            <li><span>Thành viên nhóm: Nhóm 2</span></li>
+            <li>
+              <ul>
+                <li>Ngô Gia Bảo - SE184840</li>
+                <li>Nguyễn Quốc Việt - SE18</li>
+                <li>Nguyễn Viết Hoàng - SE183852</li>
+                <li>Cao Hoàng Đăng Khoa- SE18</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

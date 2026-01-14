@@ -1,62 +1,127 @@
 .home-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  }
-  
-  .home-body {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-  }
-  
-  .hero-section h1 {
-    font-size: 48px;
-    color: #2c3e50;
-    margin-bottom: 10px;
-  }
-  
-  .hero-section p {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 50px;
-  }
-  
-  .action-cards {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap; /* Giúp xuống dòng trên màn hình nhỏ */
-  }
-  
-  .card {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    width: 250px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  }
-  
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  }
-  
-  .card .icon {
-    font-size: 50px;
-    color: #8b5e3c;
-    margin-bottom: 20px;
-  }
-  
-  .card h3 {
-    font-size: 22px;
-    color: #2c3e50;
-    margin-bottom: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* 2. Tạo lớp nền giả bằng ::before */
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Đường dẫn ảnh (dấu / ở đầu nghĩa là thư mục public) */
+  background-image: url('public/img/hero.jpg');
+  background-size: cover;
+  /* Ảnh phủ kín màn hình */
+  background-position: center;
+  /* Căn giữa ảnh */
+  background-repeat: no-repeat;
+
+  /* --- PHẦN QUAN TRỌNG NHẤT: HIỆU ỨNG MỜ --- */
+
+  /* Cách 1: Làm tối và mờ ảnh đi (Khuyên dùng để nổi bật chữ trắng) */
+  filter: brightness(0.4) blur(3px);
+  /* brightness(0.4): Giảm độ sáng còn 40% */
+  /* blur(3px): Làm nhòe nhẹ 3px */
+
+  /* Cách 2: Nếu chỉ muốn làm mờ đục (opacity) */
+  /* opacity: 0.3; */
+
+  z-index: -1;
+  /* Đẩy lớp nền này ra sau lưng nội dung chính */
+}
+
+/* --- Cập nhật màu chữ để tương phản tốt hơn --- */
+/* Vì nền đã tối đi, nên các nội dung bên trên nên chuyển sang màu sáng */
+
+.home-body {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.home-body .hero-section h1 {
+  color: #ffffff;
+  /* Chuyển tiêu đề sang màu trắng */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  /* Thêm bóng nhẹ cho chữ dễ đọc hơn */
+}
+
+.home-body .hero-section p {
+  color: #e5e7eb;
+  /* Màu chữ phụ sáng nhẹ */
+  font-weight: 500;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.action-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Giúp xuống dòng trên màn hình nhỏ */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  /* Nền trắng hơi trong suốt */
+  padding: 40px;
+  border-radius: 15px;
+  width: 250px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* SỬA MÀU CHỮ: Thêm class cha (.hero-section) để tăng độ ưu tiên (specificity) */
+.hero-section .card p {
+  font-size: 16px;
+  color: #333333;
+  /* Đổi thành màu xám đậm hoặc đen để hiện rõ trên nền trắng */
+  margin-bottom: 0;
+  /* Reset margin nếu cần */
+  font-weight: normal;
+  /* Nếu muốn chữ mảnh hơn tiêu đề */
+}
+
+/* Hiệu ứng hover cho card (giữ nguyên của bạn rất đẹp rồi) */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card .icon {
+  font-size: 50px;
+  color: #8b5e3c;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #555;
+}

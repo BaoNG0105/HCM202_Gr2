@@ -11,9 +11,9 @@ const Header = () => {
           Trang chủ
         </NavLink>
 
-        <navlink to="/about" className="nav-item">
+        <NavLink to="/about" className="nav-item">
             Giới thiệu
-        </navlink>
+        </NavLink>
         
         {/* Giả sử mục lục dẫn đến trang đọc sách */}
         <NavLink to="/e-book" className="nav-item">
@@ -24,9 +24,9 @@ const Header = () => {
           Quiz
         </NavLink>
         
-        <NavLink to="/contact" className="nav-item disabled">
+        {/* <NavLink to="/contact" className="nav-item disabled">
           Liên hệ
-        </NavLink>
+        </NavLink> */}
       </nav>
     </div>
   );
