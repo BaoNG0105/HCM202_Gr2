@@ -27,10 +27,6 @@ const Header = () => {
         <NavLink to="/ai-chatbot" className="nav-item">
           AI Chatbot
         </NavLink>
-
-        {/* <NavLink to="/contact" className="nav-item disabled">
-          Liên hệ
-        </NavLink> */}
       </nav>
     </div>
   );

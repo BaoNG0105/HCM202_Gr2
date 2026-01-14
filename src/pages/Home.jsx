@@ -35,7 +35,6 @@ const Home = () => {
             {/* Card 2: Đọc Sách */}
             <div className="card card-image" onClick={() => navigate('/e-book')}>
               <img src="img/1.png" alt="Bìa sách" className="card-bg" />
-              {/* 2. Lớp phủ chứa chữ (Overlay) */}
               <div className="card-overlay">
                 <div className="icon"><FaBookOpen /></div>
                 <h3>Đọc Sách</h3>
@@ -46,7 +45,6 @@ const Home = () => {
             {/* Card 3: Quiz */}
             <div className="card card-image" onClick={() => navigate('/quiz')}>
               <img src="img/card3.jpg" alt="Quiz" className="card-bg" />
-              {/* 2. Lớp phủ chứa chữ (Overlay) */}
               <div className="card-overlay">
                 <div className="icon"><FaQuestionCircle /></div>
                 <h3>Làm Quiz</h3>
@@ -57,15 +55,15 @@ const Home = () => {
             {/* Card 4: AI Chatbot */}
             <div className="card card-image" onClick={() => navigate('/ai-chatbot')}>
               <img src="img/card4.jpg" alt="AI Chatbot" className="card-bg" />
-              {/* 2. Lớp phủ chứa chữ (Overlay) */}
               <div className="card-overlay">
-                <div className="icon"><FaQuestionCircle /></div></div>
-              <h3>AI Chatbot</h3>
-              <p>Trò chuyện và tìm hiểu sâu hơn về nội dung sách.</p>
+                <div className="icon"><FaQuestionCircle /></div>
+                <h3>AI Chatbot</h3>
+                <p>Hãy cùng trò chuyện với AI để tìm hiểu sâu hơn về kiến thức.</p>
+              </div>
             </div>
-
           </div>
         </div>
+
       </main>
 
       {/* 3. Footer nằm dưới cùng */}

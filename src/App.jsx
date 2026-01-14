@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import BookReader from './pages/BookReader';
 import Quiz from './pages/Quiz';
+import AiChatbot from './pages/Chatbot';
+
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
         
         {/* Đường dẫn làm quiz */}
         <Route path="/quiz" element={<Quiz />} />
+
+        {/* Đường dẫn AI Chatbot */}
+        <Route path="/ai-chatbot" element={<AiChatbot />} />
       </Routes>
     </BrowserRouter>
   );
