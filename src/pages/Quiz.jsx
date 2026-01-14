@@ -9,93 +9,183 @@ const Quiz = () => {
   // --- DỮ LIỆU CÂU HỎI (Giữ nguyên) ---
   const questions = [
     {
-      questionText: 'Câu 1: Trong tác phẩm "Đường cách mệnh", Hồ Chí Minh ví vai trò lãnh đạo của Đảng Cộng sản như thế nào?',
+      questionText: 'Câu 1: Theo Hồ Chí Minh, Đảng Cộng sản Việt Nam là sản phẩm của sự kết hợp giữa các yếu tố nào?',
       answerOptions: [
-        { answerText: 'A. Người chỉ đường.', isCorrect: false },
-        { answerText: 'B. Người cầm lái.', isCorrect: true },
-        { answerText: 'C. Người tiên phong.', isCorrect: false },
-        { answerText: 'D. Người đầy tớ.', isCorrect: false },
+        { answerText: 'A. Chủ nghĩa Mác - Lênin và phong trào công nhân.', isCorrect: false },
+        { answerText: 'B. Chủ nghĩa Mác - Lênin, phong trào công nhân và phong trào yêu nước.', isCorrect: true },
+        { answerText: 'C. Chủ nghĩa Mác - Lênin và tư tưởng truyền thống dân tộc.', isCorrect: false },
+        { answerText: 'D. Phong trào công nhân và phong trào yêu nước.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 2: Điểm sáng tạo của Hồ Chí Minh về quy luật ra đời của Đảng Cộng sản Việt Nam so với lý luận Mác - Lênin là thêm yếu tố nào?',
+      questionText: 'Câu 2: Hồ Chí Minh khẳng định: "Đảng muốn vững thì phải có..."?',
       answerOptions: [
-        { answerText: 'A. Phong trào công nhân.', isCorrect: false },
-        { answerText: 'B. Chủ nghĩa xã hội khoa học.', isCorrect: false },
-        { answerText: 'C. Phong trào yêu nước.', isCorrect: true },
-        { answerText: 'D. Phong trào nông dân.', isCorrect: false },
+        { answerText: 'A. Nhiều đảng viên.', isCorrect: false },
+        { answerText: 'B. Nhiều vũ khí.', isCorrect: false },
+        { answerText: 'C. Chủ nghĩa làm cốt.', isCorrect: true },
+        { answerText: 'D. Tài chính vững mạnh.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 3: Theo Hồ Chí Minh, nền tảng tư tưởng và kim chỉ nam cho hành động của Đảng là gì?',
+      questionText: 'Câu 3: Trong tư tưởng Hồ Chí Minh, Đảng Cộng sản Việt Nam là Đảng của ai?',
       answerOptions: [
-        { answerText: 'A. Tinh thần yêu nước.', isCorrect: false },
-        { answerText: 'B. Chủ nghĩa Mác - Lênin.', isCorrect: true },
-        { answerText: 'C. Truyền thống dân tộc.', isCorrect: false },
-        { answerText: 'D. Tinh hoa văn hóa nhân loại.', isCorrect: false },
+        { answerText: 'A. Chỉ của giai cấp công nhân.', isCorrect: false },
+        { answerText: 'B. Của giai cấp công nhân và nhân dân lao động.', isCorrect: false },
+        { answerText: 'C. Của giai cấp công nhân, của nhân dân lao động và của dân tộc Việt Nam.', isCorrect: true },
+        { answerText: 'D. Của toàn bộ tầng lớp trí thức.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 4: Hồ Chí Minh coi nguyên tắc nào là "thang thuốc" tốt nhất để làm cho phần tốt nảy nở, phần xấu mất dần đi?',
+      questionText: 'Câu 4: Luận điểm "Đảng ta là đạo đức, là văn minh" được Hồ Chí Minh trình bày tại sự kiện nào?',
       answerOptions: [
-        { answerText: 'A. Tập trung dân chủ.', isCorrect: false },
-        { answerText: 'B. Kỷ luật nghiêm minh.', isCorrect: false },
-        { answerText: 'C. Tự phê bình và phê bình.', isCorrect: true },
-        { answerText: 'D. Đoàn kết quốc tế.', isCorrect: false },
+        { answerText: 'A. Lễ kỷ niệm 30 năm thành lập Đảng (1960).', isCorrect: true },
+        { answerText: 'B. Đại hội II của Đảng (1951).', isCorrect: false },
+        { answerText: 'C. Đại hội III của Đảng (1960).', isCorrect: false },
+        { answerText: 'D. Hội nghị Trung ương 4 (1961).', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 5: Bản chất giai cấp của Nhà nước Việt Nam Dân chủ Cộng hòa là gì?',
+      questionText: 'Câu 5: Nguyên tắc tổ chức cơ bản nhất của Đảng theo tư tưởng Hồ Chí Minh là gì?',
       answerOptions: [
-        { answerText: 'A. Giai cấp nông dân.', isCorrect: false },
-        { answerText: 'B. Giai cấp công nhân.', isCorrect: true },
-        { answerText: 'C. Tầng lớp trí thức.', isCorrect: false },
-        { answerText: 'D. Giai cấp tư sản dân tộc.', isCorrect: false },
+        { answerText: 'A. Tự phê bình và phê bình.', isCorrect: false },
+        { answerText: 'B. Tập trung dân chủ.', isCorrect: true },
+        { answerText: 'C. Kỷ luật nghiêm minh, tự giác.', isCorrect: false },
+        { answerText: 'D. Đoàn kết thống nhất.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 6: Trong Nhà nước của dân, cán bộ nhà nước giữ vai trò gì đối với nhân dân?',
+      questionText: 'Câu 6: Hồ Chí Minh ví việc "Tự phê bình và phê bình" trong Đảng giống như việc gì hằng ngày?',
       answerOptions: [
-        { answerText: 'A. Là quan phụ mẫu.', isCorrect: false },
-        { answerText: 'B. Là người cai trị.', isCorrect: false },
-        { answerText: 'C. Là người lãnh đạo và người đầy tớ (công bộc).', isCorrect: true },
-        { answerText: 'D. Là người ban ơn.', isCorrect: false },
+        { answerText: 'A. Ăn cơm.', isCorrect: false },
+        { answerText: 'B. Rửa mặt.', isCorrect: true },
+        { answerText: 'C. Quét nhà.', isCorrect: false },
+        { answerText: 'D. Tập thể dục.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 7: Nhà nước "Vì dân" theo tư tưởng Hồ Chí Minh là nhà nước như thế nào?',
+      questionText: 'Câu 7: Theo Hồ Chí Minh, "Giữ gìn sự đoàn kết nhất trí của Đảng như..."?',
       answerOptions: [
-        { answerText: 'A. Do dân bầu ra.', isCorrect: false },
-        { answerText: 'B. Được dân ủng hộ.', isCorrect: false },
-        { answerText: 'C. Phục vụ lợi ích và nguyện vọng của nhân dân, không có đặc quyền đặc lợi.', isCorrect: true },
-        { answerText: 'D. Quản lý bằng pháp luật.', isCorrect: false },
+        { answerText: 'A. Giữ gìn danh dự cá nhân.', isCorrect: false },
+        { answerText: 'B. Giữ gìn con ngươi của mắt mình.', isCorrect: true },
+        { answerText: 'C. Giữ gìn tính mạng của mình.', isCorrect: false },
+        { answerText: 'D. Giữ gìn tài sản của quốc gia.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 8: Theo Hồ Chí Minh, trong Nhà nước pháp quyền, công cụ quan trọng nhất để quản lý xã hội là gì?',
+      questionText: 'Câu 8: Hồ Chí Minh khẳng định: "Cán bộ là cái... của mọi công việc."',
       answerOptions: [
-        { answerText: 'A. Đạo đức.', isCorrect: false },
-        { answerText: 'B. Hiến pháp và pháp luật.', isCorrect: true },
-        { answerText: 'C. Dư luận xã hội.', isCorrect: false },
-        { answerText: 'D. Mệnh lệnh hành chính.', isCorrect: false },
+        { answerText: 'A. Gốc.', isCorrect: true },
+        { answerText: 'B. Ngọn.', isCorrect: false },
+        { answerText: 'C. Thân.', isCorrect: false },
+        { answerText: 'D. Lá.', isCorrect: false },
       ],
     },
     {
-      questionText: 'Câu 9: Nội dung nào sau đây thể hiện tính "nhân văn" trong tư tưởng pháp quyền của Hồ Chí Minh?',
+      questionText: 'Câu 9: Để xây dựng Đảng trong sạch, vững mạnh, Hồ Chí Minh đặc biệt nhấn mạnh việc phòng chống loại giặc nào?',
       answerOptions: [
-        { answerText: 'A. Pháp luật phải nghiêm khắc trừng trị mọi tội phạm.', isCorrect: false },
-        { answerText: 'B. Pháp luật bảo vệ quyền con người, có tính khuyến thiện, giáo dục.', isCorrect: true },
-        { answerText: 'C. Pháp luật chỉ bảo vệ giai cấp công nhân.', isCorrect: false },
-        { answerText: 'D. Pháp luật ưu tiên người giàu.', isCorrect: false },
+        { answerText: 'A. Giặc đói.', isCorrect: false },
+        { answerText: 'B. Giặc dốt.', isCorrect: false },
+        { answerText: 'C. Giặc ngoại xâm.', isCorrect: false },
+        { answerText: 'D. Giặc nội xâm (Tham ô, lãng phí, quan liêu).', isCorrect: true },
       ],
     },
     {
-      questionText: 'Câu 10: Để Nhà nước trong sạch, vững mạnh, Hồ Chí Minh nhấn mạnh biện pháp nào để chống sự lạm quyền?',
+      questionText: 'Câu 10: Vai trò của Đảng Cộng sản Việt Nam trong hệ thống chính trị là gì?',
       answerOptions: [
-        { answerText: 'A. Tăng lương cho cán bộ.', isCorrect: false },
-        { answerText: 'B. Giảm bớt bộ máy hành chính.', isCorrect: false },
-        { answerText: 'C. Kiểm soát quyền lực nhà nước.', isCorrect: true },
-        { answerText: 'D. Tăng cường quyền lực cho người đứng đầu.', isCorrect: false },
+        { answerText: 'A. Quản lý xã hội.', isCorrect: false },
+        { answerText: 'B. Lãnh đạo Nhà nước và xã hội.', isCorrect: true },
+        { answerText: 'C. Thực hiện phản biện xã hội.', isCorrect: false },
+        { answerText: 'D. Giám sát các hoạt động hành pháp.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 11: "Nhà nước của nhân dân" theo tư tưởng Hồ Chí Minh có nghĩa là gì?',
+      answerOptions: [
+        { answerText: 'A. Mọi quyền lực trong Nhà nước và xã hội đều thuộc về nhân dân.', isCorrect: true },
+        { answerText: 'B. Nhân dân chỉ đi bầu cử rồi giao lại quyền cho cán bộ.', isCorrect: false },
+        { answerText: 'C. Nhà nước do cấp trên bổ nhiệm xuống.', isCorrect: false },
+        { answerText: 'D. Nhà nước chỉ phục vụ người nghèo.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 12: Đặc điểm nào sau đây thể hiện bản chất "Nhà nước do nhân dân"?',
+      answerOptions: [
+        { answerText: 'A. Nhân dân đóng thuế để nuôi bộ máy nhà nước.', isCorrect: false },
+        { answerText: 'B. Nhân dân lựa chọn, bầu ra những đại biểu thay mặt mình quản lý nhà nước.', isCorrect: true },
+        { answerText: 'C. Nhà nước làm mọi việc thay cho dân.', isCorrect: false },
+        { answerText: 'D. Dân không có quyền bãi miễn đại biểu.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 13: Quan điểm "Việc gì có lợi cho dân, ta phải hết sức làm. Việc gì có hại cho dân, ta phải hết sức tránh" thể hiện bản chất nào của Nhà nước?',
+      answerOptions: [
+        { answerText: 'A. Nhà nước của dân.', isCorrect: false },
+        { answerText: 'B. Nhà nước vì dân.', isCorrect: true },
+        { answerText: 'C. Nhà nước pháp quyền.', isCorrect: false },
+        { answerText: 'D. Nhà nước dân chủ.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 14: Theo Hồ Chí Minh, bản chất giai cấp công nhân của Nhà nước ta thống nhất với yếu tố nào?',
+      answerOptions: [
+        { answerText: 'A. Tính nhân dân và tính dân tộc.', isCorrect: true },
+        { answerText: 'B. Tính quốc tế.', isCorrect: false },
+        { answerText: 'C. Tính tôn giáo.', isCorrect: false },
+        { answerText: 'D. Tính giai cấp phong kiến.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 15: Nội dung cốt lõi của Nhà nước pháp quyền theo tư tưởng Hồ Chí Minh là gì?',
+      answerOptions: [
+        { answerText: 'A. Nhà nước không cần luật pháp.', isCorrect: false },
+        { answerText: 'B. Quản lý xã hội bằng pháp luật và đề cao Hiến pháp.', isCorrect: true },
+        { answerText: 'C. Chỉ sử dụng đạo đức để quản lý xã hội.', isCorrect: false },
+        { answerText: 'D. Quyền lực tập trung vào một cá nhân.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 16: Bản Hiến pháp đầu tiên của nước ta năm 1946 do Hồ Chí Minh làm Trưởng ban soạn thảo mang đậm tư tưởng gì?',
+      answerOptions: [
+        { answerText: 'A. Tư tưởng quân chủ.', isCorrect: false },
+        { answerText: 'B. Tư tưởng dân chủ pháp trị.', isCorrect: true },
+        { answerText: 'C. Tư tưởng vô chính phủ.', isCorrect: false },
+        { answerText: 'D. Tư tưởng độc tài.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 17: Để đảm bảo tính nghiêm minh của pháp luật, Hồ Chí Minh yêu cầu cán bộ phải là người như thế nào?',
+      answerOptions: [
+        { answerText: 'A. Đứng ngoài vòng pháp luật.', isCorrect: false },
+        { answerText: 'B. Gương mẫu chấp hành pháp luật, "pháp bất vị thân".', isCorrect: true },
+        { answerText: 'C. Có quyền linh hoạt thay đổi luật theo ý muốn.', isCorrect: false },
+        { answerText: 'D. Chỉ thực hiện luật khi có người giám sát.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 18: Hồ Chí Minh chủ trương xây dựng cơ chế kiểm soát quyền lực nhà nước như thế nào?',
+      answerOptions: [
+        { answerText: 'A. Nhân dân kiểm soát và các cơ quan nhà nước tự kiểm soát lẫn nhau.', isCorrect: true },
+        { answerText: 'B. Không cần kiểm soát vì cán bộ đều là người tốt.', isCorrect: false },
+        { answerText: 'C. Chỉ có Đảng mới có quyền kiểm soát.', isCorrect: false },
+        { answerText: 'D. Chỉ để cấp trên kiểm soát cấp dưới.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 19: Theo Hồ Chí Minh, tiêu chuẩn hàng đầu của người cán bộ trong bộ máy Nhà nước là gì?',
+      answerOptions: [
+        { answerText: 'A. Giàu có, quyền thế.', isCorrect: false },
+        { answerText: 'B. Là "công bộc", là "đầy tớ" của nhân dân.', isCorrect: true },
+        { answerText: 'C. Khéo léo che đậy khuyết điểm.', isCorrect: false },
+        { answerText: 'D. Có trình độ học vấn cao nhưng không cần đạo đức.', isCorrect: false },
+      ],
+    },
+    {
+      questionText: 'Câu 20: Mục tiêu cao nhất của việc xây dựng Nhà nước dân chủ pháp quyền theo Hồ Chí Minh là gì?',
+      answerOptions: [
+        { answerText: 'A. Để thế giới công nhận.', isCorrect: false },
+        { answerText: 'B. Để khẳng định quyền lực của bộ máy quản lý.', isCorrect: false },
+        { answerText: 'C. Đảm bảo quyền làm chủ thực sự của nhân dân và phục vụ lợi ích của dân.', isCorrect: true },
+        { answerText: 'D. Để thực hiện các cuộc vận động kinh tế.', isCorrect: false },
       ],
     },
   ];
@@ -103,7 +193,7 @@ const Quiz = () => {
   // --- STATES ---
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  
+
   // State mới: Lưu index đáp án người dùng chọn cho từng câu (ban đầu là null hết)
   // Ví dụ: [null, null, 1, 0, ...] nghĩa là câu 1,2 chưa chọn, câu 3 chọn B, câu 4 chọn A
   const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
@@ -155,7 +245,7 @@ const Quiz = () => {
   return (
     <div className="quiz-page">
       <div className="quiz-container">
-        
+
         {/* MÀN HÌNH KẾT QUẢ */}
         {showScore ? (
           <div className="score-section">
@@ -164,11 +254,11 @@ const Quiz = () => {
               <span>{finalScore}</span> / {questions.length}
             </div>
             <p className="score-text">
-              {finalScore === 10 ? "Xuất sắc! Bạn đã nắm vững kiến thức." : 
-               finalScore >= 7 ? "Làm tốt lắm! Kiến thức của bạn khá vững." : 
-               "Hãy cố gắng hơn nhé! Bạn có thể đọc lại sách để ôn tập."}
+              {finalScore === 10 ? "Xuất sắc! Bạn đã nắm vững kiến thức." :
+                finalScore >= 7 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
+                  "Hãy cố gắng hơn nhé! Bạn có thể đọc lại sách để ôn tập."}
             </p>
-            
+
             <div className="score-actions">
               <button className="btn-restart" onClick={handleRestart}>
                 <FaRedo /> Làm lại
@@ -179,7 +269,7 @@ const Quiz = () => {
             </div>
           </div>
         ) : (
-          
+
           /* MÀN HÌNH CÂU HỎI */
           <>
             <div className="question-section">
@@ -198,7 +288,7 @@ const Quiz = () => {
               {questions[currentQuestion].answerOptions.map((answerOption, index) => {
                 // Kiểm tra xem đáp án này có đang được chọn không
                 const isSelected = userAnswers[currentQuestion] === index;
-                
+
                 return (
                   <button
                     key={index}
@@ -213,16 +303,16 @@ const Quiz = () => {
 
             {/* --- THANH ĐIỀU HƯỚNG MỚI --- */}
             <div className="navigation-footer">
-              <button 
-                className="btn-nav btn-prev" 
+              <button
+                className="btn-nav btn-prev"
                 onClick={handlePrevQuestion}
                 disabled={currentQuestion === 0} // Ẩn/Disable nếu là câu đầu
               >
                 <FaArrowLeft /> Quay lại
               </button>
 
-              <button 
-                className="btn-nav btn-next" 
+              <button
+                className="btn-nav btn-next"
                 onClick={handleNextQuestion}
                 disabled={userAnswers[currentQuestion] === null} // Disable nếu chưa chọn
               >
