@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HTMLFlipBook from 'react-pageflip';
 import Page from '../components/Page';
 import './BookReader.css';
+// import Header from '../components/Header';
 
 // Import Icons
 import {

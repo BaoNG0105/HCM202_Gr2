@@ -12,18 +12,22 @@ const Header = () => {
         </NavLink>
 
         <NavLink to="/about" className="nav-item">
-            Giới thiệu
+          Giới thiệu
         </NavLink>
-        
+
         {/* Giả sử mục lục dẫn đến trang đọc sách */}
         <NavLink to="/e-book" className="nav-item">
           E-Book
         </NavLink>
-        
+
         <NavLink to="/quiz" className="nav-item">
           Quiz
         </NavLink>
-        
+
+        <NavLink to="/ai-chatbot" className="nav-item">
+          AI Chatbot
+        </NavLink>
+
         {/* <NavLink to="/contact" className="nav-item disabled">
           Liên hệ
         </NavLink> */}

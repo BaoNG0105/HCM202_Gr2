@@ -22,25 +22,46 @@ const Home = () => {
           <div className="action-cards">
 
             {/* Card 1: Giới thiệu */}
-            <div className="card" onClick={() => navigate('/about')}>
-              <div className="icon"><FaQuestionCircle /></div>
-              <h3>Giới thiệu</h3>
-              {/* Thêm thẻ p nếu muốn đồng bộ giao diện, hoặc để trống */}
-              <p>Một số nội dung cốt lỗi về dự án này.</p>
+            <div className="card card-image" onClick={() => navigate('/about')}>
+              <img src="img/card1.jpg" alt="Giới thiệu" className="card-bg" />
+              {/* 2. Lớp phủ chứa chữ (Overlay) */}
+              <div className="card-overlay">
+                <div className="icon"><FaBookOpen /></div>
+                <h3>Giới thiệu</h3>
+                <p>Một số nội dung cốt lỗi về dự án này.</p>
+              </div>
             </div>
 
             {/* Card 2: Đọc Sách */}
-            <div className="card" onClick={() => navigate('/e-book')}>
-              <div className="icon"><FaBookOpen /></div>
-              <h3>Đọc Sách</h3>
-              <p>Trải nghiệm lật trang sống động như thật.</p>
+            <div className="card card-image" onClick={() => navigate('/e-book')}>
+              <img src="img/1.png" alt="Bìa sách" className="card-bg" />
+              {/* 2. Lớp phủ chứa chữ (Overlay) */}
+              <div className="card-overlay">
+                <div className="icon"><FaBookOpen /></div>
+                <h3>Đọc Sách</h3>
+                <p>Trải nghiệm lật trang sống động như thật.</p>
+              </div>
             </div>
 
             {/* Card 3: Quiz */}
-            <div className="card" onClick={() => navigate('/quiz')}>
-              <div className="icon"><FaQuestionCircle /></div>
-              <h3>Làm Quiz</h3>
-              <p>Thử thách kiến thức với 10 câu hỏi thú vị.</p>
+            <div className="card card-image" onClick={() => navigate('/quiz')}>
+              <img src="img/card3.jpg" alt="Quiz" className="card-bg" />
+              {/* 2. Lớp phủ chứa chữ (Overlay) */}
+              <div className="card-overlay">
+                <div className="icon"><FaQuestionCircle /></div>
+                <h3>Làm Quiz</h3>
+                <p>Thử thách kiến thức với 10 câu hỏi thú vị.</p>
+              </div>
+            </div>
+
+            {/* Card 4: AI Chatbot */}
+            <div className="card card-image" onClick={() => navigate('/ai-chatbot')}>
+              <img src="img/card4.jpg" alt="AI Chatbot" className="card-bg" />
+              {/* 2. Lớp phủ chứa chữ (Overlay) */}
+              <div className="card-overlay">
+                <div className="icon"><FaQuestionCircle /></div></div>
+              <h3>AI Chatbot</h3>
+              <p>Trò chuyện và tìm hiểu sâu hơn về nội dung sách.</p>
             </div>
 
           </div>

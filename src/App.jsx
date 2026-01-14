@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import About from './pages/About';
 import BookReader from './pages/BookReader';
 import Quiz from './pages/Quiz';
 
@@ -11,6 +12,9 @@ function App() {
       <Routes>
         {/* Đường dẫn mặc định (Trang chủ) */}
         <Route path="/" element={<Home />} />
+
+        {/* Đường dẫn giới thiệu về dự án */}
+        <Route path="/about" element={<About />} />
         
         {/* Đường dẫn đọc sách */}
         <Route path="/e-book" element={<BookReader />} />
