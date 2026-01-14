@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         
         {/* Đường dẫn đọc sách */}
-        <Route path="/book" element={<BookReader />} />
+        <Route path="/e-book" element={<BookReader />} />
         
         {/* Đường dẫn làm quiz */}
         <Route path="/quiz" element={<Quiz />} />

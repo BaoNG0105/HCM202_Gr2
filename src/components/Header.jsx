@@ -1,0 +1,35 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './Header.css';
+
+const Header = () => {
+  return (
+    <div className="header-wrapper">
+      <nav className="pill-nav">
+        {/* NavLink tự động thêm class 'active' khi đường dẫn trùng khớp */}
+        <NavLink to="/" className="nav-item" end>
+          Trang chủ
+        </NavLink>
+
+        <navlink to="/about" className="nav-item">
+            Giới thiệu
+        </navlink>
+        
+        {/* Giả sử mục lục dẫn đến trang đọc sách */}
+        <NavLink to="/e-book" className="nav-item">
+          E-Book
+        </NavLink>
+        
+        <NavLink to="/quiz" className="nav-item">
+          Quiz
+        </NavLink>
+        
+        <NavLink to="/contact" className="nav-item disabled">
+          Liên hệ
+        </NavLink>
+      </nav>
+    </div>
+  );
+};
+
+export default Header;

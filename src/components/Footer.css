@@ -1,0 +1,93 @@
+.main-footer {
+    background-color: #111827;
+    color: #e5e7eb;
+    padding-top: 60px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: auto;
+    /* Đẩy footer xuống đáy nếu nội dung ngắn */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    /* Mỗi cột chiếm độ rộng bằng nhau */
+    min-width: 250px;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    /* Chữ in hoa tiêu đề */
+}
+
+/* Style cho cột 1: Subtitle & Quote */
+.subtitle {
+    color: #9ca3af;
+    margin-bottom: 20px;
+}
+
+.quote-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Nền mờ nhẹ */
+    padding: 15px;
+    border-left: 4px solid #06b6d4;
+    /* Thanh màu xanh ngọc (Cyan) bên trái */
+    font-style: italic;
+    color: #22d3ee;
+    /* Màu chữ trích dẫn sáng hơn */
+    line-height: 1.6;
+}
+
+/* Style cho cột 2: List */
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 12px;
+    color: #d1d5db;
+}
+
+/* Style cho cột 3: Thông tin */
+.footer-info {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-info li {
+    margin-bottom: 12px;
+    color: #d1d5db;
+}
+
+.footer-info span {
+    font-weight: 600;
+    color: #ffffff;
+    /* Nhãn (Label) màu trắng đậm */
+    margin-right: 5px;
+}
+
+/* Phần bản quyền dưới cùng */
+.footer-bottom {
+    margin-top: 50px;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #374151;
+    /* Đường kẻ ngang mờ ngăn cách */
+    color: #9ca3af;
+    background-color: #0f141e;
+    /* Màu nền đậm hơn một chút cho đáy */
+}
