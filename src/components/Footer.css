@@ -1,11 +1,16 @@
 .main-footer {
-    background-color: #111827;
-    color: #e5e7eb;
+    /* 1. Nền màu VÀNG NHẠT (Cream/Giấy cũ) */
+    background-color: #f2efe6; 
+    
+    /* 2. Text thường màu ĐEN */
+    color: #333333; 
+    
     padding-top: 60px;
     font-size: 14px;
     width: 100%;
     margin-top: auto;
-    /* Đẩy footer xuống đáy nếu nội dung ngắn */
+    /* Thêm viền đỏ trên cùng để tạo điểm nhấn ngăn cách với body */
+    border-top: 4px solid #b71c1c; 
 }
 
 .footer-content {
@@ -20,35 +25,42 @@
 
 .footer-column {
     flex: 1;
-    /* Mỗi cột chiếm độ rộng bằng nhau */
     min-width: 250px;
 }
 
 .footer-column h3 {
-    color: #ffffff;
+    /* 3. Tiêu đề màu ĐỎ ĐẬM */
+    color: #b71c1c; 
+    
     font-size: 18px;
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
-    /* Chữ in hoa tiêu đề */
 }
 
 /* Style cho cột 1: Subtitle & Quote */
 .subtitle {
-    color: #9ca3af;
+    color: #555555; /* Màu xám đậm hơn chút cho phụ đề */
     margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .quote-box {
-    background-color: rgba(255, 255, 255, 0.05);
-    /* Nền mờ nhẹ */
+    /* Nền cam nhạt/vàng nhạt nổi bật hơn nền footer một chút */
+    background-color: #fff3e0; 
+    
     padding: 15px;
-    border-left: 4px solid #06b6d4;
-    /* Thanh màu xanh ngọc (Cyan) bên trái */
+    
+    /* Thanh viền bên trái màu ĐỎ */
+    border-left: 4px solid #b71c1c; 
+    
     font-style: italic;
-    color: #22d3ee;
-    /* Màu chữ trích dẫn sáng hơn */
+    
+    /* Chữ trích dẫn màu ĐỎ ĐẬM hoặc Đen */
+    color: #b71c1c; 
+    
     line-height: 1.6;
+    border-radius: 0 4px 4px 0;
 }
 
 /* Style cho cột 2: List */
@@ -59,7 +71,14 @@
 
 .footer-list li {
     margin-bottom: 12px;
-    color: #d1d5db;
+    color: #333333; /* Chữ đen */
+    transition: color 0.2s;
+}
+
+/* Hiệu ứng khi di chuột vào link danh sách */
+.footer-list li:hover {
+    color: #b71c1c;
+    cursor: pointer;
 }
 
 /* Style cho cột 3: Thông tin */
@@ -70,13 +89,12 @@
 
 .footer-info li {
     margin-bottom: 12px;
-    color: #d1d5db;
+    color: #333333; /* Chữ đen */
 }
 
 .footer-info span {
-    font-weight: 600;
-    color: #ffffff;
-    /* Nhãn (Label) màu trắng đậm */
+    font-weight: 700;
+    color: #b71c1c; /* Nhãn (Label) màu ĐỎ để nổi bật */
     margin-right: 5px;
 }
 
@@ -85,9 +103,10 @@
     margin-top: 50px;
     padding: 20px 0;
     text-align: center;
-    border-top: 1px solid #374151;
-    /* Đường kẻ ngang mờ ngăn cách */
-    color: #9ca3af;
-    background-color: #0f141e;
-    /* Màu nền đậm hơn một chút cho đáy */
+    
+    /* Nền đậm hơn nền chính một chút để phân biệt */
+    background-color: #f2efe6; 
+    
+    border-top: 1px solid #e0d8c0;
+    color: #666666; /* Chữ xám cho phần bản quyền */
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBookOpen, FaQuestionCircle } from 'react-icons/fa';
-import Header from '../components/Header'; // Import Header mới
-import Footer from '../components/Footer'; // Import Footer mới
+import { FaBookOpen, FaQuestionCircle } from 'react-icons/fa'; // Giữ nguyên import icon của bạn
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import './Home.css';
 
 const Home = () => {
@@ -10,8 +10,26 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* 1. Header nằm trên cùng */}
+      {/* 1. Header */}
       <Header />
+
+      {/* --- PHẦN MỚI: VIDEO BACKGROUND --- */}
+      <div className="video-background-wrapper">
+        <iframe
+          className="video-iframe"
+          /* Link đã thêm tham số để tự chạy, tắt tiếng, lặp lại */
+          src="https://www.youtube.com/embed/rG3aZznMIm8?autoplay=1&mute=1&loop=1&playlist=rG3aZznMIm8&controls=0&showinfo=0&rel=0&modestbranding=1"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+
+        {/* Lớp phủ tối màu để chữ hiển thị rõ trên nền video */}
+        <div className="video-overlay"></div>
+      </div>
+      {/* ---------------------------------- */}
 
       {/* 2. Nội dung chính (Body) */}
       <main className="home-body">
@@ -24,7 +42,6 @@ const Home = () => {
             {/* Card 1: Giới thiệu */}
             <div className="card card-image" onClick={() => navigate('/about')}>
               <img src="img/card1.jpg" alt="Giới thiệu" className="card-bg" />
-              {/* 2. Lớp phủ chứa chữ (Overlay) */}
               <div className="card-overlay">
                 <div className="icon"><FaBookOpen /></div>
                 <h3>Giới thiệu</h3>
@@ -61,12 +78,12 @@ const Home = () => {
                 <p>Hãy cùng trò chuyện với AI để tìm hiểu sâu hơn về kiến thức.</p>
               </div>
             </div>
+
           </div>
         </div>
-
       </main>
 
-      {/* 3. Footer nằm dưới cùng */}
+      {/* 3. Footer */}
       <Footer />
     </div>
   );

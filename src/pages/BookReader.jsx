@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HTMLFlipBook from 'react-pageflip';
 import Page from '../components/Page';
 import './BookReader.css';
-// import Header from '../components/Header';
+import Header from '../components/Header';
 
 // Import Icons
 import {
@@ -95,111 +95,114 @@ function BookReader() {
     };
 
     return (
-        <div className="book-reader-container">
+        <div className="book-page-layout">
+            <Header />
+            <div className="book-reader-container">
 
-            {/* SIDEBAR - MỤC LỤC */}
-            <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-                <div className="sidebar-header">
-                    <span>Table of Contents</span>
-                    <FaTimes style={{ cursor: 'pointer' }} onClick={() => setIsSidebarOpen(false)} />
-                </div>
-                <ul className="toc-list">
-                    {/* Giả lập mục lục */}
-                    <li className="toc-item" onClick={() => goToPage(0)}>Trang Bìa</li>
-                    <li className="toc-item" onClick={() => goToPage(1)}>SỰ RA ĐỜI VÀ VAI TRÒ CỦA ĐẢN</li>
-                    <li className="toc-item" onClick={() => goToPage(2)}>ĐẢNG PHẢI TRONG SẠCH, VỮNG SẠCH</li>
-                    <li className="toc-item" onClick={() => goToPage(3)}>BẢN CHẤT NHÀ NƯỚC VIỆT NAM</li>
-                    <li className="toc-item" onClick={() => goToPage(4)}>NHÀ NƯỚC CỦA NHÂN DÂN</li>
-                    <li className="toc-item" onClick={() => goToPage(5)}>NHÀ NƯỚC DO NHÂN DÂN & vÌ NHÂN DÂN</li>
-                    <li className="toc-item" onClick={() => goToPage(6)}>NHÀ NƯỚC PHÁP QUYỀN XÃ HỘI CHỦ NGHĨA</li>
-                    <li className="toc-item" onClick={() => goToPage(7)}>NHÀ NƯỚC TRONG SẠCH & KIỂM SOÁT QUYỀN LỰC</li>
-                    <li className="toc-item" onClick={() => goToPage(8)}>VẬN DỤNG: XÂY DỰNG ĐẢNG "VỪA HỒNG, VỪA CHUYÊN"</li>
-                    <li className="toc-item" onClick={() => goToPage(9)}>VẬN DỤNG: XÂY DỰNG NHÀ NƯỚC PHÁP QUYỀN XÃ HỘI CHỦ NGHĨA</li>
-                    <li className="toc-item" onClick={() => goToPage(10)}>QUYẾT LIỆT PHÒNG, CHỐNG THAM NHŨNG</li>
-                    <li className="toc-item" onClick={() => goToPage(11)}>Trang Kết Thúc</li>
-                </ul>
-            </div>
-
-            {/* KHU VỰC CHÍNH */}
-            <div className="main-content">
-                {/* Header hiển thị số trang */}
-                <div className="top-bar">
-                    {/* Số trang hiển thị ở giữa */}
-                    <span className="page-counter">{currentPage + 1} / {totalPage}</span>
-
-                    {/* 3. Thêm nút Thoát ở đây */}
-                    <button
-                        className="btn-exit"
-                        onClick={() => navigate('/')}
-                        title="Thoát ra trang chủ"
-                    >
-                        <FaTimes />
-                    </button>
+                {/* SIDEBAR - MỤC LỤC */}
+                <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                    <div className="sidebar-header">
+                        <span>Table of Contents</span>
+                        <FaTimes style={{ cursor: 'pointer' }} onClick={() => setIsSidebarOpen(false)} />
+                    </div>
+                    <ul className="toc-list">
+                        {/* Giả lập mục lục */}
+                        <li className="toc-item" onClick={() => goToPage(0)}>Trang Bìa</li>
+                        <li className="toc-item" onClick={() => goToPage(1)}>SỰ RA ĐỜI VÀ VAI TRÒ CỦA ĐẢN</li>
+                        <li className="toc-item" onClick={() => goToPage(2)}>ĐẢNG PHẢI TRONG SẠCH, VỮNG SẠCH</li>
+                        <li className="toc-item" onClick={() => goToPage(3)}>BẢN CHẤT NHÀ NƯỚC VIỆT NAM</li>
+                        <li className="toc-item" onClick={() => goToPage(4)}>NHÀ NƯỚC CỦA NHÂN DÂN</li>
+                        <li className="toc-item" onClick={() => goToPage(5)}>NHÀ NƯỚC DO NHÂN DÂN & vÌ NHÂN DÂN</li>
+                        <li className="toc-item" onClick={() => goToPage(6)}>NHÀ NƯỚC PHÁP QUYỀN XÃ HỘI CHỦ NGHĨA</li>
+                        <li className="toc-item" onClick={() => goToPage(7)}>NHÀ NƯỚC TRONG SẠCH & KIỂM SOÁT QUYỀN LỰC</li>
+                        <li className="toc-item" onClick={() => goToPage(8)}>VẬN DỤNG: XÂY DỰNG ĐẢNG "VỪA HỒNG, VỪA CHUYÊN"</li>
+                        <li className="toc-item" onClick={() => goToPage(9)}>VẬN DỤNG: XÂY DỰNG NHÀ NƯỚC PHÁP QUYỀN XÃ HỘI CHỦ NGHĨA</li>
+                        <li className="toc-item" onClick={() => goToPage(10)}>QUYẾT LIỆT PHÒNG, CHỐNG THAM NHŨNG</li>
+                        <li className="toc-item" onClick={() => goToPage(11)}>Trang Kết Thúc</li>
+                    </ul>
                 </div>
 
-                {/* Khu vực chứa sách + Mũi tên điều hướng */}
-                <div className="book-viewport">
-                    {/* Nút Previous lớn bên trái */}
-                    <button className="nav-btn nav-prev" onClick={prevFlip}>
-                        <FaChevronLeft />
-                    </button>
+                {/* KHU VỰC CHÍNH */}
+                <div className="main-content">
+                    {/* Header hiển thị số trang */}
+                    <div className="top-bar">
+                        {/* Số trang hiển thị ở giữa */}
+                        <span className="page-counter">{currentPage + 1} / {totalPage}</span>
 
-                    {/* SÁCH (Được bọc div để Zoom) */}
-                    <div style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.3s ease' }}>
-                        <HTMLFlipBook
-                            width={400}
-                            height={600}
-                            size="stretch"
-                            minWidth={300}
-                            maxWidth={500}
-                            minHeight={400}
-                            maxHeight={700}
-                            showCover={true}
-                            usePortrait={false}
-                            mobileScrollSupport={true}
-                            onFlip={onFlip}
-                            onInit={onInit}
-                            ref={bookRef}
-                            className="my-book"
+                        {/* 3. Thêm nút Thoát ở đây */}
+                        <button
+                            className="btn-exit"
+                            onClick={() => navigate('/')}
+                            title="Thoát ra trang chủ"
                         >
-                            {pagesImage.map((path, index) => (
-                                <Page key={index} number={index + 1} image={path} />
-                            ))}
-                        </HTMLFlipBook>
+                            <FaTimes />
+                        </button>
                     </div>
 
-                    {/* Nút Next lớn bên phải */}
-                    <button className="nav-btn nav-next" onClick={nextFlip}>
-                        <FaChevronRight />
-                    </button>
+                    {/* Khu vực chứa sách + Mũi tên điều hướng */}
+                    <div className="book-viewport">
+                        {/* Nút Previous lớn bên trái */}
+                        <button className="nav-btn nav-prev" onClick={prevFlip}>
+                            <FaChevronLeft />
+                        </button>
+
+                        {/* SÁCH (Được bọc div để Zoom) */}
+                        <div style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.3s ease' }}>
+                            <HTMLFlipBook
+                                width={400}
+                                height={600}
+                                size="stretch"
+                                minWidth={300}
+                                maxWidth={500}
+                                minHeight={400}
+                                maxHeight={700}
+                                showCover={true}
+                                usePortrait={false}
+                                mobileScrollSupport={true}
+                                onFlip={onFlip}
+                                onInit={onInit}
+                                ref={bookRef}
+                                className="my-book"
+                            >
+                                {pagesImage.map((path, index) => (
+                                    <Page key={index} number={index + 1} image={path} />
+                                ))}
+                            </HTMLFlipBook>
+                        </div>
+
+                        {/* Nút Next lớn bên phải */}
+                        <button className="nav-btn nav-next" onClick={nextFlip}>
+                            <FaChevronRight />
+                        </button>
+                    </div>
+
+                    {/* BOTTOM TOOLBAR */}
+                    <div className="bottom-toolbar">
+                        {/* Nút Zoom */}
+                        <button className="tool-btn" onClick={() => handleZoom('out')}><FaSearchMinus /></button>
+                        <button className="tool-btn" onClick={() => handleZoom('in')}><FaSearchPlus /></button>
+
+                        <div className="separator"></div>
+
+                        {/* Nút Mục lục */}
+                        <button className="tool-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                            <FaList />
+                        </button>
+
+                        {/* Nút Auto Play */}
+                        <button className={`tool-btn ${isPlaying ? 'active' : ''}`} onClick={() => setIsPlaying(!isPlaying)}>
+                            {isPlaying ? <FaPause /> : <FaPlay />}
+                        </button>
+
+                        <div className="separator"></div>
+
+                        {/* Nút Fullscreen */}
+                        <button className="tool-btn" onClick={toggleFullscreen}>
+                            {isFullscreen ? <FaCompress /> : <FaExpand />}
+                        </button>
+                    </div>
+
                 </div>
-
-                {/* BOTTOM TOOLBAR */}
-                <div className="bottom-toolbar">
-                    {/* Nút Zoom */}
-                    <button className="tool-btn" onClick={() => handleZoom('out')}><FaSearchMinus /></button>
-                    <button className="tool-btn" onClick={() => handleZoom('in')}><FaSearchPlus /></button>
-
-                    <div className="separator"></div>
-
-                    {/* Nút Mục lục */}
-                    <button className="tool-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                        <FaList />
-                    </button>
-
-                    {/* Nút Auto Play */}
-                    <button className={`tool-btn ${isPlaying ? 'active' : ''}`} onClick={() => setIsPlaying(!isPlaying)}>
-                        {isPlaying ? <FaPause /> : <FaPlay />}
-                    </button>
-
-                    <div className="separator"></div>
-
-                    {/* Nút Fullscreen */}
-                    <button className="tool-btn" onClick={toggleFullscreen}>
-                        {isFullscreen ? <FaCompress /> : <FaExpand />}
-                    </button>
-                </div>
-
             </div>
         </div>
     );

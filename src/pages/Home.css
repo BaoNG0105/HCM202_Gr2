@@ -6,36 +6,47 @@
   z-index: 0;
 }
 
-/* 2. Tạo lớp nền giả bằng ::before */
+/* --- 1. XÓA HOẶC ẨN BACKGROUND CŨ --- */
 .home-container::before {
-  content: "";
+  display: none; /* Ẩn lớp nền ảnh cũ đi */
+}
+
+/* --- 2. CSS CHO VIDEO BACKGROUND MỚI --- */
+.video-background-wrapper {
+  position: fixed; /* Cố định để khi cuộn trang video không bị trôi */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Đẩy xuống dưới cùng sau lưng nội dung */
+  overflow: hidden;
+}
+
+.video-iframe {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  border: none;
+  
+  /* Phóng to iframe lên 150% để che đi các vạch đen hoặc logo YouTube nếu có */
+  transform: scale(1.5); 
+  pointer-events: none; /* Không cho người dùng bấm dừng video */
+}
+
+/* Lớp phủ màu tối + mờ để chữ dễ đọc (thay thế cho hiệu ứng filter cũ) */
+.video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  background-image: url('img/hero.jpg');
-  background-size: cover;
-  /* Ảnh phủ kín màn hình */
-  background-position: center;
-  /* Căn giữa ảnh */
-  background-repeat: no-repeat;
-
-  /* --- PHẦN QUAN TRỌNG NHẤT: HIỆU ỨNG MỜ --- */
-
-  /* Cách 1: Làm tối và mờ ảnh đi (Khuyên dùng để nổi bật chữ trắng) */
-  filter: brightness(0.6) blur(2px);
-  /* brightness(0.6): Giảm độ sáng còn 60% */
-  /* blur(3px): Làm nhòe nhẹ 2px */
-
-  z-index: -1;
-  /* Đẩy lớp nền này ra sau lưng nội dung chính */
+  
+  /* Màu đen mờ 50% */
+  background: rgba(0, 0, 0, 0.5); 
+  
+  /* Nếu muốn video mờ đi giống ảnh cũ thì thêm dòng này: */
+  /* backdrop-filter: blur(3px); */
 }
-
-/* --- Cập nhật màu chữ để tương phản tốt hơn --- */
-/* Vì nền đã tối đi, nên các nội dung bên trên nên chuyển sang màu sáng */
-
 .home-body {
   flex-grow: 1;
   display: flex;

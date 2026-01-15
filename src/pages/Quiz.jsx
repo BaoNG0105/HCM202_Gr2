@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaRedo, FaArrowRight, FaCheck } from 'react-icons/fa';
+import { FaArrowLeft, FaRedo, FaArrowRight, FaCheck, FaStar, FaFlag } from 'react-icons/fa';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import './Quiz.css';
 
 const Quiz = () => {
   const navigate = useNavigate();
 
-  // --- DỮ LIỆU CÂU HỎI (Giữ nguyên) ---
+  // --- DỮ LIỆU CÂU HỎI (20 Câu - Giữ nguyên dữ liệu cũ của bạn) ---
   const questions = [
     {
       questionText: 'Câu 1: Theo Hồ Chí Minh, Đảng Cộng sản Việt Nam là sản phẩm của sự kết hợp giữa các yếu tố nào?',
@@ -191,27 +193,28 @@ const Quiz = () => {
   ];
 
   // --- STATES ---
+  const [isStarted, setIsStarted] = useState(false); // Trạng thái bắt đầu
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
-
-  // State mới: Lưu index đáp án người dùng chọn cho từng câu (ban đầu là null hết)
-  // Ví dụ: [null, null, 1, 0, ...] nghĩa là câu 1,2 chưa chọn, câu 3 chọn B, câu 4 chọn A
   const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
 
-  // --- XỬ LÝ CHỌN ĐÁP ÁN (Không chuyển câu ngay) ---
+  // --- HÀM XỬ LÝ ---
+  const handleStartQuiz = () => {
+    setIsStarted(true);
+  };
+
   const handleOptionSelect = (optionIndex) => {
     const newAnswers = [...userAnswers];
     newAnswers[currentQuestion] = optionIndex;
     setUserAnswers(newAnswers);
   };
 
-  // --- XỬ LÝ CHUYỂN CÂU ---
   const handleNextQuestion = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowScore(true); // Hết câu hỏi thì hiện điểm
+      setShowScore(true);
     }
   };
 
@@ -222,7 +225,6 @@ const Quiz = () => {
     }
   };
 
-  // --- TÍNH ĐIỂM (Chỉ tính khi kết thúc) ---
   const calculateScore = () => {
     let score = 0;
     userAnswers.forEach((answerIndex, questionIndex) => {
@@ -233,99 +235,126 @@ const Quiz = () => {
     return score;
   };
 
-  // --- RESET QUIZ ---
   const handleRestart = () => {
     setUserAnswers(Array(questions.length).fill(null));
     setCurrentQuestion(0);
     setShowScore(false);
+    setIsStarted(false); // Quay về màn hình chào
   };
 
   const finalScore = calculateScore();
 
   return (
-    <div className="quiz-page">
-      <div className="quiz-container">
-
-        {/* MÀN HÌNH KẾT QUẢ */}
-        {showScore ? (
-          <div className="score-section">
-            <h2>Kết quả của bạn</h2>
-            <div className="score-circle">
-              <span>{finalScore}</span> / {questions.length}
-            </div>
-            <p className="score-text">
-              {finalScore === 10 ? "Xuất sắc! Bạn đã nắm vững kiến thức." :
-                finalScore >= 7 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
-                  "Hãy cố gắng hơn nhé! Bạn có thể đọc lại sách để ôn tập."}
-            </p>
-
-            <div className="score-actions">
-              <button className="btn-restart" onClick={handleRestart}>
-                <FaRedo /> Làm lại
-              </button>
-              <button className="btn-home" onClick={() => navigate('/')}>
-                <FaArrowLeft /> Về trang chủ
-              </button>
-            </div>
-          </div>
-        ) : (
-
-          /* MÀN HÌNH CÂU HỎI */
-          <>
-            <div className="question-section">
-              <div className="question-header">
-                <span className="question-count">
-                  Câu hỏi {currentQuestion + 1}/{questions.length}
-                </span>
-                <button className="btn-exit-quiz" onClick={() => navigate('/')}>Thoát</button>
+    <div className="quiz-page-wrapper">
+      <Header />
+      
+      <main className="quiz-body">
+        <div className="quiz-container">
+          
+          {/* MÀN HÌNH CHÀO MỪNG */}
+          {!isStarted ? (
+            <div className="welcome-section">
+              <div className="welcome-icon">
+                <FaFlag />
               </div>
-              <div className="question-text">
-                {questions[currentQuestion].questionText}
+              <h1>Trắc Nghiệm Kiến Thức</h1>
+              <h2>Tư Tưởng Hồ Chí Minh về ĐCSVN & Nhà nước của Nhân dân, do Nhân dân, vì Nhân dân</h2>
+              <p>
+                Chào mừng bạn đến với bài kiểm tra trắc nghiệm. 
+                Bài thi gồm <strong>{questions.length} câu hỏi</strong> trắc nghiệm xoay quanh các nội dung về chương IV của tư tưởng Hồ Chí Minh.
+              </p>
+              <ul className="quiz-rules">
+                <li><FaStar /> Chọn 1 đáp án đúng nhất cho mỗi câu hỏi.</li>
+                <li><FaStar /> Không giới hạn thời gian làm bài.</li>
+                <li><FaStar /> Đạt 70% số điểm để vượt qua bài kiểm tra.</li>
+              </ul>
+              <button className="btn-start" onClick={handleStartQuiz}>
+                Bắt đầu làm bài
+              </button>
+            </div>
+          ) : showScore ? (
+            
+            /* MÀN HÌNH KẾT QUẢ */
+            <div className="score-section">
+              <h2>Kết quả của bạn</h2>
+              <div className="score-circle">
+                <span>{finalScore}</span>
+                <small>/ {questions.length}</small>
+              </div>
+              <p className="score-text">
+                {finalScore === questions.length ? "Xuất sắc! Bạn đã nắm vững hoàn toàn kiến thức." :
+                 finalScore >= 14 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
+                 "Hãy ôn tập lại Chương 4 và thử lại nhé!"}
+              </p>
+
+              <div className="score-actions">
+                <button className="btn-restart" onClick={handleRestart}>
+                  <FaRedo /> Làm lại
+                </button>
+                <button className="btn-home" onClick={() => navigate('/')}>
+                  <FaArrowLeft /> Về trang chủ
+                </button>
               </div>
             </div>
 
-            <div className="answer-section">
-              {questions[currentQuestion].answerOptions.map((answerOption, index) => {
-                // Kiểm tra xem đáp án này có đang được chọn không
-                const isSelected = userAnswers[currentQuestion] === index;
+          ) : (
 
-                return (
-                  <button
-                    key={index}
-                    className={`answer-btn ${isSelected ? 'selected' : ''}`}
-                    onClick={() => handleOptionSelect(index)}
-                  >
-                    {answerOption.answerText}
-                  </button>
-                );
-              })}
-            </div>
+            /* MÀN HÌNH CÂU HỎI */
+            <>
+              <div className="question-section">
+                <div className="question-header">
+                  <span className="question-count">
+                    Câu {currentQuestion + 1} <span className="total">/ {questions.length}</span>
+                  </span>
+                  <button className="btn-exit-quiz" onClick={() => navigate('/')}>Thoát</button>
+                </div>
+                <div className="question-text">
+                  {questions[currentQuestion].questionText}
+                </div>
+              </div>
 
-            {/* --- THANH ĐIỀU HƯỚNG MỚI --- */}
-            <div className="navigation-footer">
-              <button
-                className="btn-nav btn-prev"
-                onClick={handlePrevQuestion}
-                disabled={currentQuestion === 0} // Ẩn/Disable nếu là câu đầu
-              >
-                <FaArrowLeft /> Quay lại
-              </button>
+              <div className="answer-section">
+                {questions[currentQuestion].answerOptions.map((answerOption, index) => {
+                  const isSelected = userAnswers[currentQuestion] === index;
+                  return (
+                    <button
+                      key={index}
+                      className={`answer-btn ${isSelected ? 'selected' : ''}`}
+                      onClick={() => handleOptionSelect(index)}
+                    >
+                      {answerOption.answerText}
+                    </button>
+                  );
+                })}
+              </div>
 
-              <button
-                className="btn-nav btn-next"
-                onClick={handleNextQuestion}
-                disabled={userAnswers[currentQuestion] === null} // Disable nếu chưa chọn
-              >
-                {currentQuestion === questions.length - 1 ? (
-                  <>Hoàn thành <FaCheck /></>
-                ) : (
-                  <>Tiếp theo <FaArrowRight /></>
-                )}
-              </button>
-            </div>
-          </>
-        )}
-      </div>
+              <div className="navigation-footer">
+                <button 
+                  className="btn-nav btn-prev" 
+                  onClick={handlePrevQuestion}
+                  disabled={currentQuestion === 0}
+                >
+                  <FaArrowLeft /> Quay lại
+                </button>
+
+                <button 
+                  className="btn-nav btn-next" 
+                  onClick={handleNextQuestion}
+                  disabled={userAnswers[currentQuestion] === null}
+                >
+                  {currentQuestion === questions.length - 1 ? (
+                    <>Hoàn thành <FaCheck /></>
+                  ) : (
+                    <>Tiếp theo <FaArrowRight /></>
+                  )}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </main>
+      
+      <Footer />
     </div>
   );
 };
