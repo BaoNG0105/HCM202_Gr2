@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaBookOpen, FaQuestionCircle } from 'react-icons/fa'; // Giữ nguyên import icon của bạn
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import MusicPlayer from '../components/MusicPlayer';
 import './Home.css';
 
 const Home = () => {
@@ -12,6 +13,9 @@ const Home = () => {
     <div className="home-container">
       {/* 1. Header */}
       <Header />
+
+      {/* Component Music Player */}
+      <MusicPlayer />
 
       {/* --- PHẦN MỚI: VIDEO BACKGROUND --- */}
       <div className="video-background-wrapper">

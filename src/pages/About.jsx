@@ -172,7 +172,30 @@ const About = () => {
                 <img src={item.img} alt={item.title} />
               </div>
             </section>
+            
           ))}
+
+          {/* --- THÊM PHẦN VIDEO TẠI ĐÂY --- */}
+          <div className="video-section animate-on-scroll">
+            <div className="section-header">
+              <h2>Tư Liệu Tham Khảo</h2>
+              <p>Video tổng hợp kiến thức về Tư tưởng Hồ Chí Minh</p>
+            </div>
+            
+            <div className="video-wrapper">
+              <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/dnMCD3MGGFo?si=cvPAPhKomZNbcWEx" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          {/* ------------------------------- */}
         </div>
       </main>
 

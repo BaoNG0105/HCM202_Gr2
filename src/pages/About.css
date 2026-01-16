@@ -11,7 +11,6 @@
   }
   
   /* --- Hero Section --- */
-  /* --- Hero Section --- */
 .about-hero {
     position: relative; /* Quan trọng: Để định vị lớp phủ ::before */
     text-align: center;
@@ -220,3 +219,47 @@
   .info-section {
     margin-bottom: 120px; 
   }
+
+  /* --- Video Section --- */
+.video-section {
+  margin-top: 50px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.video-section .section-header h2 {
+  color: #b71c1c;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.video-section .section-header p {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+/* Tạo khung bao quanh video để responsive */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* Tỷ lệ khung hình 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 900px; /* Giới hạn chiều rộng tối đa */
+  margin: 0 auto; /* Căn giữa */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 5px solid #fff; /* Viền trắng tạo cảm giác khung tranh */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
