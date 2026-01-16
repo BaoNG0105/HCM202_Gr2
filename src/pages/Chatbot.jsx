@@ -8,16 +8,17 @@ import './Chatbot.css';
 
 const Chatbot = () => {
   // --- CẤU HÌNH GEMINI ---
-  // Lưu ý: Để lộ API Key ở frontend là không bảo mật cho dự án thật, 
-  // nhưng chấp nhận được cho đồ án môn học chạy local.
-  const API_KEY = "AIzaSyC2FGq3vuAat56sHjDicvoxJBTwAYPQRN8"; 
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  if (!API_KEY) {
+    console.error("Chưa cấu hình API Key!");
+  }
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Chào bạn! Tôi là trợ lý AI. Tôi đã đọc xong giáo trình Chương IV. Bạn cần hỏi gì không?",
+      text: "Chào bạn! Tôi là trợ lý AI. Tôi có thể hỗ trợ bạn về những kiến thức liên quan đến Chương IV. Bạn cần hỏi gì không?",
       sender: 'bot'
     }
   ]);
@@ -91,11 +92,11 @@ const Chatbot = () => {
                 </div>
                 {/* Dùng dangerouslySetInnerHTML nếu muốn AI render được chữ đậm/nghiêng */}
                 <div className="bubble">
-                   {msg.text}
+                  {msg.text}
                 </div>
               </div>
             ))}
-            
+
             {isTyping && (
               <div className="message bot">
                 <div className="avatar"><FaRobot /></div>
@@ -106,9 +107,9 @@ const Chatbot = () => {
           </div>
 
           <form className="chat-input-area" onSubmit={handleSend}>
-            <input 
-              type="text" 
-              placeholder="Nhập câu hỏi..." 
+            <input
+              type="text"
+              placeholder="Nhập câu hỏi..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isTyping} // Khóa ô nhập khi đang chờ AI

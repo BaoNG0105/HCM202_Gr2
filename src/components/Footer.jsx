@@ -41,6 +41,7 @@ const Footer = () => {
                 <li>Nguyễn Viết Hoàng - SE183852</li>
                 <li>Ngô Gia Bảo - SE184840</li>
                 <li>Nguyễn Anh Việt - SE180540</li>
+                <li>Đinh Vương Thiên Tứ - SE183314</li>
                 <li>Cao Hoàng Đăng Khoa- SE184266</li>
               </ul>
             </li>
