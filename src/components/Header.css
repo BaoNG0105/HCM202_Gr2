@@ -56,3 +56,25 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* --- RESPONSIVE MOBILE CHO HEADER --- */
+@media (max-width: 768px) {
+  .header-wrapper {
+    padding-top: 10px;
+  }
+
+  .pill-nav {
+    max-width: 95%; /* Không chiếm hết lề */
+    flex-wrap: wrap; /* Cho phép các nút xuống dòng */
+    justify-content: center;
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .nav-item {
+    font-size: 13px; /* Giảm cỡ chữ */
+    padding: 8px 15px; /* Giảm độ dày nút */
+    flex-grow: 1; /* Nút tự giãn để lấp đầy dòng */
+    text-align: center;
+  }
+}

@@ -149,12 +149,12 @@ function BookReader() {
                         {/* SÁCH (Được bọc div để Zoom) */}
                         <div style={{ transform: `scale(${zoomScale})`, transition: 'transform 0.3s ease' }}>
                             <HTMLFlipBook
-                                width={400}
-                                height={600}
+                                width={300}
+                                height={500}
                                 size="stretch"
-                                minWidth={300}
+                                minWidth={280}
                                 maxWidth={500}
-                                minHeight={400}
+                                minHeight={350}
                                 maxHeight={700}
                                 showCover={true}
                                 usePortrait={false}

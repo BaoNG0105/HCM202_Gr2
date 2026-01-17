@@ -359,3 +359,36 @@
     background-color: #f5f5f5;
     border-color: #ccc;
 }
+
+/* --- RESPONSIVE MOBILE CHO QUIZ --- */
+@media (max-width: 768px) {
+    .quiz-page {
+      padding: 10px;
+      align-items: flex-start; /* Để quiz không bị cắt đầu nếu màn hình ngắn */
+      padding-top: 80px; /* Tránh header che mất */
+    }
+  
+    .quiz-container {
+      padding: 20px;
+      min-height: auto;
+    }
+  
+    .question-text {
+      font-size: 18px;
+    }
+  
+    .answer-btn {
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    .navigation-footer {
+      flex-direction: column; /* Nút xếp dọc nếu cần, hoặc giữ ngang nhưng nhỏ lại */
+      gap: 10px;
+    }
+  
+    .btn-nav {
+      width: 100%; /* Nút bấm to ra cho dễ ấn */
+      justify-content: center;
+    }
+  }

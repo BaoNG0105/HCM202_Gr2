@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { FaPaperPlane, FaRobot, FaUser } from 'react-icons/fa';
+import { FaPaperPlane, FaRobot, FaUser, FaTimes } from 'react-icons/fa';
 import { GoogleGenerativeAI } from "@google/generative-ai"; // Import Gemini
 import { BOOK_CONTENT } from '../data/bookContent'; // Import kiến thức sách
 import './Chatbot.css';
 
 const Chatbot = () => {
+  const navigate = useNavigate(); // 3. Khởi tạo hook navigate
+
   // --- CẤU HÌNH GEMINI ---
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   if (!API_KEY) {
@@ -80,6 +83,11 @@ const Chatbot = () => {
       <main className="chatbot-body">
         <div className="chat-container">
           <div className="chat-header">
+            {/* Nút thoát nằm góc phải */}
+            <button className="btn-close-chat" onClick={() => navigate('/')} title="Thoát">
+              <FaTimes />
+            </button>
+
             <h2>Hỏi đáp Tư tưởng Hồ Chí Minh (AI Powered)</h2>
             <p>Sử dụng công nghệ Gemini 2.5 Flash</p>
           </div>
@@ -100,7 +108,7 @@ const Chatbot = () => {
             {isTyping && (
               <div className="message bot">
                 <div className="avatar"><FaRobot /></div>
-                <div className="bubble typing">Đang phân tích dữ liệu sách...</div>
+                <div className="bubble typing">Đang phân tích kiến thức...</div>
               </div>
             )}
             <div ref={messagesEndRef} />
