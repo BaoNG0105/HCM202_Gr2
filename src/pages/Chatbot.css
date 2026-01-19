@@ -191,6 +191,38 @@
   background: #8e1616;
 }
 
+/* --- CSS CHO NỘI DUNG MARKDOWN --- */
+
+/* Xóa margin thừa của thẻ p do Markdown sinh ra */
+.bubble p {
+  margin: 5px 0; 
+}
+
+.bubble p:first-child {
+  margin-top: 0;
+}
+
+.bubble p:last-child {
+  margin-bottom: 0;
+}
+
+/* Định dạng danh sách gạch đầu dòng */
+.bubble ul, .bubble ol {
+  margin: 5px 0;
+  padding-left: 20px; /* Thụt đầu dòng cho đẹp */
+}
+
+.bubble li {
+  list-style: disc; /* Hiện dấu chấm tròn */
+  margin-bottom: 5px;
+}
+
+/* Định dạng chữ in đậm */
+.bubble strong {
+  font-weight: 700;
+  color: inherit; /* Giữ màu chữ hiện tại */
+}
+
 /* --- RESPONSIVE MOBILE CHO CHATBOT --- */
 @media (max-width: 768px) {
   .chatbot-body {

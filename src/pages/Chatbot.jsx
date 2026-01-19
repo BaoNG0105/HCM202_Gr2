@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaPaperPlane, FaRobot, FaUser, FaTimes } from 'react-icons/fa';
 import { GoogleGenerativeAI } from "@google/generative-ai"; // Import Gemini
 import { BOOK_CONTENT } from '../data/bookContent'; // Import kiến thức sách
+import ReactMarkdown from 'react-markdown'; // Dùng để render markdown nếu cần
 import './Chatbot.css';
 
 const Chatbot = () => {
@@ -19,7 +20,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Chào bạn! Tôi là trợ lý AI. Tôi có thể hỗ trợ bạn về những kiến thức liên quan đến Chương IV. Bạn cần hỏi gì không?",
+      text: "Chào bạn! Tôi là trợ lý AI. Tôi có thể hỗ trợ bạn về những kiến thức liên quan đến tư tưởng Hồ Chí Minh. Bạn cần hỏi gì không?",
       sender: 'bot'
     }
   ]);
@@ -49,7 +50,7 @@ const Chatbot = () => {
       // 2. Tạo câu lệnh (Prompt) gửi cho AI
       // Kỹ thuật này gọi là "Grounding" (bắt AI trả lời dựa trên nguồn tin cậy)
       const prompt = `
-        Bạn là một trợ lý ảo chuyên gia về Tư tưởng Hồ Chí Minh.
+        Bạn là một trợ lý ảo chuyên gia về Tư tưởng Hồ Chí Minh và đặc biệt trọng tâm ở chương IV.
         Dưới đây là nội dung kiến thức nền tảng từ giáo trình:
         ---
         ${BOOK_CONTENT}
@@ -86,7 +87,7 @@ const Chatbot = () => {
             </button>
 
             <h2>Hỏi đáp Tư tưởng Hồ Chí Minh (AI Powered)</h2>
-            <p>Sử dụng công nghệ Gemini 2.5 Flash</p>
+            <p>Sử dụng công nghệ Gemini</p>
           </div>
 
           <div className="chat-window">
@@ -95,10 +96,10 @@ const Chatbot = () => {
                 <div className="avatar">
                   {msg.sender === 'bot' ? <FaRobot /> : <FaUser />}
                 </div>
-                {/* Dùng dangerouslySetInnerHTML nếu muốn AI render được chữ đậm/nghiêng */}
                 <div className="bubble">
-                  {msg.text}
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
+
               </div>
             ))}
 
