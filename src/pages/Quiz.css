@@ -1,394 +1,240 @@
-/* --- Cấu trúc chung --- */
+/* --- GAME CONTAINER --- */
 .quiz-page-wrapper {
-    display: flex;
-    flex-direction: column;
-    /* Bỏ min-height: 100vh đi vì App.jsx đã lo việc đó */
-    flex-grow: 1; 
-    background-color: #fdfbf7;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #87CEEB 0%, #1E90FF 100%); /* Màu biển trời */
+  overflow: hidden;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+  /* --- SỬA LỖI KHOẢNG TRẮNG HEADER --- */
+  /* Kéo toàn bộ trang game lên để hình nền tràn vào khu vực Header */
+  margin-top: -85px; 
+  /* Đẩy nội dung game xuống để không bị nút Menu che khuất */
+  padding-top: 100px; 
+  z-index: 0; 
+}
+
+/* Hiệu ứng sóng biển dưới đáy (Trang trí) */
+.ocean-waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: url('https://svgshare.com/i/gT8.svg') repeat-x; /* Ảnh sóng SVG */
+  background-size: 1000px 100px;
+  animation: wave 10s linear infinite;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+@keyframes wave {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 1000px; }
+}
+
+/* --- GAME UI --- */
 .quiz-body {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 20px;
 }
 
+/* Thanh hành trình (Map) */
+.game-progress-track {
+  width: 90%;
+  max-width: 800px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* --- CẬP NHẬT: CON THUYỀN (PLAYER) --- */
+.ship-icon {
+  position: absolute;
+  top: -25px; /* Căn chỉnh lại vị trí cho khớp với ảnh mới */
+  /* Đã xóa font-size và color cũ */
+  
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+  transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Di chuyển mượt */
+  transform: translateX(-50%); /* Căn giữa ảnh vào điểm mốc */
+  z-index: 2;
+  pointer-events: none; /* Không cho chuột bắt vào ảnh */
+}
+
+/* Class mới cho ảnh thuyền đang di chuyển */
+.ship-img-moving {
+  width: 60px; /* Kích thước thuyền trên thanh trượt */
+  height: auto;
+  display: block;
+}
+
+/* Cờ đích đến */
+.flag-icon {
+  position: absolute;
+  right: -15px;
+  top: -35px;
+  font-size: 35px;
+  color: #d4af37; /* Vàng */
+}
+
+/* --- KHUNG CÂU HỎI (GAME BOARD) --- */
 .quiz-container {
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 800px;
-    min-height: 500px;
-    border-radius: 15px;
-    padding: 40px;
-    /* Đổi bóng đổ sang tông ấm hơn */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top: 5px solid #b71c1c;
-    /* Viền đỏ trên cùng */
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 750px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  position: relative;
+  border: 4px solid #fff;
 }
 
-/* --- MÀN HÌNH CHÀO MỪNG (MỚI) --- */
-.welcome-section {
-    display: flex;
-    /* Dùng Flexbox để quản lý bố cục */
-    flex-direction: column;
-    /* Xếp các phần tử theo chiều dọc */
-    align-items: center;
-    /* Căn giữa tất cả các phần tử con */
-    text-align: center;
-    padding: 20px;
+/* Header Game: Tim & Điểm */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-.welcome-icon {
-    font-size: 60px;
-    color: #b71c1c;
-    margin-bottom: 20px;
+.lives {
+  color: #e74c3c;
+  display: flex;
+  gap: 5px;
 }
 
-.welcome-section h1 {
-    color: #b71c1c;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+.score-board {
+  color: #2980b9;
+  background: #eaf6ff;
+  padding: 5px 15px;
+  border-radius: 20px;
 }
 
-.welcome-section h2 {
-    color: #d4af37;
-    /* Màu vàng đồng */
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.welcome-section p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-.quiz-rules {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 40px;
-    text-align: left;
-
-    /* Sửa ở đây: Loại bỏ display: inline-block cũ nếu có */
-    width: fit-content;
-    /* Chiều rộng ôm sát nội dung */
-    max-width: 100%;
-    /* Không tràn khung trên mobile */
-}
-
-.quiz-rules li {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.quiz-rules li svg {
-    color: #d4af37;
-    /* Ngôi sao màu vàng */
-}
-
-/* Nút bắt đầu */
-.btn-start {
-    background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%);
-    color: white;
-    border: none;
-    padding: 15px 60px;
-    /* Tăng padding ngang cho nút đẹp hơn */
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 5px 15px rgba(183, 28, 28, 0.3);
-
-    /* Đảm bảo nút không bị dính */
-    margin-top: 10px;
-}
-
-.btn-start:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(183, 28, 28, 0.4);
-}
-
-/* --- PHẦN CÂU HỎI --- */
-.question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 15px;
-}
-
-.question-count {
-    font-size: 1.2rem;
-    color: #b71c1c;
-    /* Màu đỏ */
-    font-weight: 800;
-}
-
-.question-count .total {
-    color: #999;
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-.btn-exit-quiz {
-    background: none;
-    border: none;
-    color: #777;
-    cursor: pointer;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-
-.btn-exit-quiz:hover {
-    color: #b71c1c;
-}
-
+/* Nội dung câu hỏi */
 .question-text {
-    font-size: 1.3rem;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 30px;
-    line-height: 1.5;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  line-height: 1.4;
 }
 
-/* --- PHẦN ĐÁP ÁN --- */
+/* Grid đáp án */
 .answer-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 cột */
+  gap: 15px;
 }
 
 .answer-btn {
-    width: 100%;
-    padding: 18px 20px;
-    font-size: 1.1rem;
-    background-color: #fff;
-    border: 2px solid #e0e0e0;
-    /* Viền xám nhạt */
-    border-radius: 10px;
-    color: #444;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
-    position: relative;
+  padding: 20px;
+  font-size: 1.1rem;
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
 .answer-btn:hover {
-    background-color: #fff9e6;
-    /* Màu vàng rất nhạt khi hover */
-    border-color: #d4af37;
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  transform: translateY(-2px);
 }
 
-/* Style cho đáp án ĐANG ĐƯỢC CHỌN -> ĐỔI SANG MÀU ĐỎ */
-.answer-btn.selected {
-    background-color: #ffebee;
-    /* Nền đỏ rất nhạt */
-    border-color: #b71c1c;
-    /* Viền đỏ đậm */
-    color: #b71c1c;
-    font-weight: 600;
-    box-shadow: 0 0 0 1px #b71c1c;
+/* Hiệu ứng khi chọn Đúng/Sai */
+.answer-btn.correct {
+  background-color: #d4edda !important;
+  border-color: #28a745 !important;
+  color: #155724;
 }
 
-/* --- THANH ĐIỀU HƯỚNG --- */
-.navigation-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
+.answer-btn.wrong {
+  background-color: #f8d7da !important;
+  border-color: #dc3545 !important;
+  color: #721c24;
 }
 
-.btn-nav {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-    font-weight: 600;
+/* --- MÀN HÌNH WELCOME & KẾT QUẢ --- */
+.welcome-section, .score-section {
+  text-align: center;
+  color: #333;
 }
 
-.btn-prev {
-    background-color: #f5f5f5;
-    color: #555;
+.welcome-icon {
+  margin-bottom: 20px;
+  /* Giữ container này để căn giữa ảnh */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px; /* Dùng cho icon cờ nếu thắng */
 }
 
-.btn-prev:hover:not(:disabled) {
-    background-color: #e0e0e0;
+/* Class mới cho ảnh thuyền to ở màn hình Welcome */
+.welcome-ship-img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
 }
 
-.btn-prev:disabled {
-    opacity: 0;
-    /* Ẩn hẳn thay vì mờ */
-    cursor: default;
+/* Class mới cho ảnh thuyền ở màn hình Kết quả */
+.result-ship-img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-/* Nút Next chuyển sang màu ĐỎ */
-.btn-next {
-    background-color: #b71c1c;
-    color: white;
+/* Thuyền chìm (xoay ngang) */
+.result-ship-img.sunk {
+  transform: rotate(90deg);
+  filter: grayscale(100%) brightness(0.8);
 }
 
-.btn-next:hover:not(:disabled) {
-    background-color: #9a1010;
-    transform: translateX(3px);
-    box-shadow: 0 4px 10px rgba(183, 28, 28, 0.3);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.btn-next:disabled {
-    background-color: #e0e0e0;
-    color: #999;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+.btn-start, .btn-restart, .btn-home {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+  padding: 15px 40px;
+  color: white;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+  transition: transform 0.2s;
 }
 
-/* --- MÀN HÌNH KẾT QUẢ --- */
-.score-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    padding: 20px 0;
-    animation: fadeIn 0.5s ease;
+.btn-start:hover {
+  transform: scale(1.05);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.score-circle {
-    width: 150px;
-    height: 150px;
-    /* Gradient Đỏ */
-    background: linear-gradient(135deg, #b71c1c 0%, #ff5252 100%);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin: 30px 0;
-    box-shadow: 0 10px 20px rgba(183, 28, 28, 0.3);
-}
-
-.score-circle span {
-    font-size: 3.5rem;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.score-circle small {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-.score-text {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 40px;
-    max-width: 600px;
-}
-
-.score-actions {
-    display: flex;
-    gap: 20px;
-}
-
-.btn-restart,
-.btn-home {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.2s;
-}
-
-.btn-restart {
-    background-color: #b71c1c;
-    color: white;
-}
-
-.btn-restart:hover {
-    background-color: #9a1010;
-    transform: translateY(-2px);
-}
-
-.btn-home {
-    background-color: white;
-    color: #555;
-    border: 1px solid #ddd;
-}
-
-.btn-home:hover {
-    background-color: #f5f5f5;
-    border-color: #ccc;
-}
-
-/* --- RESPONSIVE MOBILE CHO QUIZ --- */
+/* Responsive */
 @media (max-width: 768px) {
-    .quiz-page {
-      padding: 10px;
-      align-items: flex-start; /* Để quiz không bị cắt đầu nếu màn hình ngắn */
-      padding-top: 80px; /* Tránh header che mất */
-    }
-  
-    .quiz-container {
-      padding: 20px;
-      min-height: auto;
-    }
-  
-    .question-text {
-      font-size: 18px;
-    }
-  
-    .answer-btn {
-      padding: 12px;
-      font-size: 14px;
-    }
-  
-    .navigation-footer {
-      flex-direction: column; /* Nút xếp dọc nếu cần, hoặc giữ ngang nhưng nhỏ lại */
-      gap: 10px;
-    }
-  
-    .btn-nav {
-      width: 100%; /* Nút bấm to ra cho dễ ấn */
-      justify-content: center;
-    }
+  .answer-section {
+    grid-template-columns: 1fr; /* 1 cột trên mobile */
   }
+  .question-text { font-size: 1.1rem; }
+  .ship-img-moving { width: 40px; } /* Thu nhỏ thuyền trên mobile */
+}

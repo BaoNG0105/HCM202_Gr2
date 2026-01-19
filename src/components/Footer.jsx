@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2026 HCM202 E-book project. All rights reserved.</p>
+        <p>© 2026 HCM202 Project. All rights reserved.</p>
       </div>
     </footer>
   );

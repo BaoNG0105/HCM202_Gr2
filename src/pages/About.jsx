@@ -175,7 +175,7 @@ const About = () => {
           <div className="video-section animate-on-scroll">
             <div className="section-header">
               <h2>Tư Liệu Tham Khảo</h2>
-              <p>Video tổng hợp kiến thức về Tư tưởng Hồ Chí Minh</p>
+              <p>Dưới đây là video tư liệu kiến thức về Tư tưởng Hồ Chí Minh</p>
             </div>
 
             <div className="video-wrapper">

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaRedo, FaArrowRight, FaCheck, FaStar, FaFlag } from 'react-icons/fa';
+import { FaShip, FaFlagCheckered, FaHeart, FaRegHeart, FaHome, FaRedo } from 'react-icons/fa';
 import './Quiz.css';
 
 const Quiz = () => {
   const navigate = useNavigate();
 
-  // --- DỮ LIỆU CÂU HỎI (20 Câu - Giữ nguyên dữ liệu cũ của bạn) ---
+  // --- DỮ LIỆU CÂU HỎI ---
   const questions = [
     {
       questionText: 'Câu 1: Theo Hồ Chí Minh, Đảng Cộng sản Việt Nam là sản phẩm của sự kết hợp giữa các yếu tố nào?',
@@ -190,163 +190,191 @@ const Quiz = () => {
     },
   ];
 
-  // --- STATES ---
-  const [isStarted, setIsStarted] = useState(false); // Trạng thái bắt đầu
+  // --- STATES GAME ---
+  const [gameState, setGameState] = useState('welcome'); // 'welcome', 'playing', 'finished'
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
-  const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(null));
+  const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(5); // Game có 5 mạng
+  const [selectedAnswer, setSelectedAnswer] = useState(null); // Lưu đáp án vừa chọn
+  const [isAnswering, setIsAnswering] = useState(false); // Chặn click khi đang chờ chuyển câu
 
-  // --- HÀM XỬ LÝ ---
-  const handleStartQuiz = () => {
-    setIsStarted(true);
-  };
-
-  const handleOptionSelect = (optionIndex) => {
-    const newAnswers = [...userAnswers];
-    newAnswers[currentQuestion] = optionIndex;
-    setUserAnswers(newAnswers);
-  };
-
-  const handleNextQuestion = () => {
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowScore(true);
-    }
-  };
-
-  const handlePrevQuestion = () => {
-    const prevQuestion = currentQuestion - 1;
-    if (prevQuestion >= 0) {
-      setCurrentQuestion(prevQuestion);
-    }
-  };
-
-  const calculateScore = () => {
-    let score = 0;
-    userAnswers.forEach((answerIndex, questionIndex) => {
-      if (answerIndex !== null && questions[questionIndex].answerOptions[answerIndex].isCorrect) {
-        score++;
-      }
-    });
-    return score;
-  };
-
-  const handleRestart = () => {
-    setUserAnswers(Array(questions.length).fill(null));
+  // --- LOGIC GAME ---
+  const handleStart = () => {
+    setGameState('playing');
+    setLives(5);
+    setScore(0);
     setCurrentQuestion(0);
-    setShowScore(false);
-    setIsStarted(false); // Quay về màn hình chào
+    // [FIX 2] Reset lại trạng thái trả lời để các nút không bị khóa/hiện màu cũ
+    setSelectedAnswer(null);
+    setIsAnswering(false);
   };
 
-  const finalScore = calculateScore();
+  const handleAnswerClick = (isCorrect) => {
+    if (isAnswering) return; // Không cho click liên tục
+    setIsAnswering(true);
+    setSelectedAnswer(isCorrect); // Để CSS biết đúng hay sai
+
+    // Xử lý Logic
+    if (isCorrect) {
+      setScore(score + 1);
+      // Âm thanh 'ting' (nếu muốn)
+    } else {
+      setLives(lives - 1);
+      // Rung màn hình hoặc âm thanh sai
+    }
+
+    // Đợi 1s để người chơi nhìn thấy kết quả rồi mới chuyển
+    setTimeout(() => {
+      // Kiểm tra nếu hết mạng
+      if (lives - (isCorrect ? 0 : 1) <= 0) {
+        setGameState('finished');
+      } else {
+        const nextQuestion = currentQuestion + 1;
+        if (nextQuestion < questions.length) {
+          setCurrentQuestion(nextQuestion);
+          setSelectedAnswer(null);
+          setIsAnswering(false);
+        } else {
+          setGameState('finished'); // Hết câu hỏi -> Win
+        }
+      }
+    }, 1000);
+  };
+
+  // [FIX 1] Tính % tiến độ dựa trên SCORE (số câu đúng) thay vì số câu đã qua
+  // Điều này đảm bảo trả lời sai thì thuyền đứng yên.
+  const progressPercentage = (score / questions.length) * 100;
 
   return (
     <div className="quiz-page-wrapper">
+      {/* Trang trí sóng biển */}
+      <div className="ocean-waves"></div>
+
       <main className="quiz-body">
+
+        {/* THANH TIẾN ĐỘ (CON THUYỀN) - Chỉ hiện khi đang chơi */}
+        {gameState === 'playing' && (
+          <div className="game-progress-track">
+            {/* Con thuyền di chuyển theo % ĐIỂM SỐ */}
+            <div
+              className="ship-icon"
+              style={{ left: `${progressPercentage}%` }}
+            >
+              <img src="/img/ship.png" alt="Con thuyền" className="ship-img-moving" />
+            </div>
+            {/* Cờ đích */}
+            <div className="flag-icon"><FaFlagCheckered /></div>
+          </div>
+        )}
+
         <div className="quiz-container">
 
-          {/* MÀN HÌNH CHÀO MỪNG */}
-          {!isStarted ? (
+          {/* 1. MÀN HÌNH CHÀO MỪNG */}
+          {gameState === 'welcome' && (
             <div className="welcome-section">
-              <div className="welcome-icon">
-                <FaFlag />
+              <div className="welcome-icon"></div>
+              <img src="/img/ship.png" alt="Welcome Ship" className="welcome-ship-img" />
+              <h1>Vượt Sóng Ra Khơi</h1>
+              <p>Chào mừng đồng chí đến với hành trình tìm kiếm chân lý!</p>
+              <p>Hãy giúp con thuyền Cách mạng vượt qua <strong>{questions.length} thử thách</strong> để cập bến vinh quang.</p>
+              <div style={{ margin: '20px 0', fontSize: '0.9rem', color: '#666' }}>
+                Luật chơi: Bạn có <span style={{ color: 'red' }}>5 <FaHeart /></span>. Trả lời sai sẽ mất 1 mạng.
               </div>
-              <h1>Trắc Nghiệm Kiến Thức</h1>
-              <h2>Tư Tưởng Hồ Chí Minh về ĐCSVN & Nhà nước của Nhân dân, do Nhân dân, vì Nhân dân</h2>
-              <p>
-                Chào mừng bạn đến với bài kiểm tra trắc nghiệm.
-                Bài thi gồm <strong>{questions.length} câu hỏi</strong> trắc nghiệm xoay quanh các nội dung về chương IV của tư tưởng Hồ Chí Minh.
-              </p>
-              <ul className="quiz-rules">
-                <li><FaStar /> Chọn 1 đáp án đúng nhất cho mỗi câu hỏi.</li>
-                <li><FaStar /> Không giới hạn thời gian làm bài.</li>
-                <li><FaStar /> Đạt 70% số điểm để vượt qua bài kiểm tra.</li>
-              </ul>
-              <button className="btn-start" onClick={handleStartQuiz}>
-                Bắt đầu làm bài
-              </button>
+              <button className="btn-start" onClick={handleStart}>Ra Khơi Ngay</button>
             </div>
-          ) : showScore ? (
+          )}
 
-            /* MÀN HÌNH KẾT QUẢ */
-            <div className="score-section">
-              <h2>Kết quả của bạn</h2>
-              <div className="score-circle">
-                <span>{finalScore}</span>
-                <small>/ {questions.length}</small>
-              </div>
-              <p className="score-text">
-                {finalScore === questions.length ? "Xuất sắc! Bạn đã nắm vững hoàn toàn kiến thức." :
-                  finalScore >= 14 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
-                    "Hãy ôn tập lại Chương 4 và thử lại nhé!"}
-              </p>
-
-              <div className="score-actions">
-                <button className="btn-restart" onClick={handleRestart}>
-                  <FaRedo /> Làm lại
-                </button>
-                <button className="btn-home" onClick={() => navigate('/')}>
-                  <FaArrowLeft /> Về trang chủ
-                </button>
-              </div>
-            </div>
-
-          ) : (
-
-            /* MÀN HÌNH CÂU HỎI */
+          {/* 2. MÀN HÌNH CHƠI GAME */}
+          {gameState === 'playing' && (
             <>
-              <div className="question-section">
-                <div className="question-header">
-                  <span className="question-count">
-                    Câu {currentQuestion + 1} <span className="total">/ {questions.length}</span>
-                  </span>
-                  <button className="btn-exit-quiz" onClick={() => navigate('/')}>Thoát</button>
+              <div className="game-header">
+                <div className="lives">
+                  {/* Render số tim */}
+                  {[...Array(5)].map((_, i) => (
+                    i < lives ? <FaHeart key={i} /> : <FaRegHeart key={i} style={{ opacity: 0.3 }} />
+                  ))}
                 </div>
-                <div className="question-text">
-                  {questions[currentQuestion].questionText}
+                <div className="score-board">
+                  Câu: {currentQuestion + 1}/{questions.length}
                 </div>
+              </div>
+
+              <div className="question-text">
+                {questions[currentQuestion].questionText}
               </div>
 
               <div className="answer-section">
-                {questions[currentQuestion].answerOptions.map((answerOption, index) => {
-                  const isSelected = userAnswers[currentQuestion] === index;
+                {questions[currentQuestion].answerOptions.map((option, index) => {
+                  // Logic đổi màu nút
+                  let btnClass = "answer-btn";
+                  if (selectedAnswer !== null) { // Người dùng đã bấm chọn
+                    if (option.isCorrect) btnClass += " correct"; // Hiện màu xanh cho đáp án đúng
+                    // Nếu bấm sai thì hiện màu đỏ ở nút vừa bấm
+                    else if (selectedAnswer === false && isAnswering) btnClass += " wrong";
+                  }
+
                   return (
                     <button
                       key={index}
-                      className={`answer-btn ${isSelected ? 'selected' : ''}`}
-                      onClick={() => handleOptionSelect(index)}
+                      className={btnClass}
+                      onClick={() => handleAnswerClick(option.isCorrect)}
+                      disabled={isAnswering} // Khóa nút khi đang chờ chuyển
                     >
-                      {answerOption.answerText}
+                      {option.answerText}
                     </button>
-                  );
+                  )
                 })}
-              </div>
-
-              <div className="navigation-footer">
-                <button
-                  className="btn-nav btn-prev"
-                  onClick={handlePrevQuestion}
-                  disabled={currentQuestion === 0}
-                >
-                  <FaArrowLeft /> Quay lại
-                </button>
-
-                <button
-                  className="btn-nav btn-next"
-                  onClick={handleNextQuestion}
-                  disabled={userAnswers[currentQuestion] === null}
-                >
-                  {currentQuestion === questions.length - 1 ? (
-                    <>Hoàn thành <FaCheck /></>
-                  ) : (
-                    <>Tiếp theo <FaArrowRight /></>
-                  )}
-                </button>
               </div>
             </>
           )}
+
+          {/* 3. MÀN HÌNH KẾT THÚC */}
+          {gameState === 'finished' && (
+            <div className="score-section">
+              <div className="welcome-icon">
+                {lives <= 0 ? (
+                  /* Trường hợp 1: Thua (Hết mạng) */
+                  <img src="/img/ship.png" alt="Thuyền chìm" className="result-ship-img sunk" />                ) : score === questions.length ? (
+                  /* Trường hợp 2: Thắng tuyệt đối 20/20 */
+                  <FaFlagCheckered style={{ color: '#d4af37' }} />
+                ) : (
+                  /* Trường hợp 3: Còn mạng nhưng không đúng hết */
+                  <img src="/img/ship.png" alt="Thuyền về đích" className="result-ship-img" />)}
+              </div>
+
+              {/* LOGIC TIÊU ĐỀ MỚI */}
+              <h2>
+                {lives <= 0
+                  ? "THUYỀN GẶP BÃO!"
+                  : score === questions.length
+                    ? "CẬP BẾN THÀNH CÔNG!"
+                    : "HÀNH TRÌNH KẾT THÚC"}
+              </h2>
+
+              <p className="score-text">
+                {lives <= 0 ? (
+                  /* Nội dung khi Thua */
+                  `Rất tiếc, hành trình đã dừng lại ở câu số ${currentQuestion + 1}. Hãy ôn tập lại kiến thức nhé!`
+                ) : score === questions.length ? (
+                  /* Nội dung khi Thắng tuyệt đối */
+                  `Xuất sắc! Bạn đã trả lời đúng tuyệt đối ${score}/${questions.length} câu hỏi và cập bến vinh quang.`
+                ) : (
+                  /* Nội dung khi Thắng nhưng chưa tuyệt đối */
+                  `Bạn đã về đích với ${score}/${questions.length} câu đúng. Tuy nhiên, để gọi là "Cập bến thành công", bạn cần trả lời đúng tất cả các câu hỏi. Hãy thử lại nhé!`
+                )}
+              </p>
+
+              <div className="score-actions">
+                <button className="btn-restart" onClick={handleStart}>
+                  <FaRedo /> Chơi Lại
+                </button>
+                <button className="btn-home" onClick={() => navigate('/')}>
+                  <FaHome /> Về Trang Chủ
+                </button>
+              </div>
+            </div>
+          )}
+
         </div>
       </main>
     </div>

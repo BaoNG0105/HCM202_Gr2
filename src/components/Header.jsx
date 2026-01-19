@@ -6,13 +6,12 @@ const Header = () => {
   return (
     <div className="header-wrapper">
       <nav className="pill-nav">
-        {/* NavLink tự động thêm class 'active' khi đường dẫn trùng khớp */}
         <NavLink to="/" className="nav-item" end>
           Trang chủ
         </NavLink>
 
         <NavLink to="/about" className="nav-item">
-          Giới thiệu
+          Nội dung
         </NavLink>
 
         {/* Giả sử mục lục dẫn đến trang đọc sách */}
@@ -21,7 +20,7 @@ const Header = () => {
         </NavLink>
 
         <NavLink to="/quiz" className="nav-item">
-          Quiz
+          Mini-game
         </NavLink>
 
         <NavLink to="/ai-chatbot" className="nav-item">
