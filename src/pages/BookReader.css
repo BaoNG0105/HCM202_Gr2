@@ -1,21 +1,17 @@
 .book-page-layout {
   display: flex;
   flex-direction: column;
-  /* Xếp dọc: Header trên, Sách dưới */
-  height: 100vh;
+  height: calc(100vh - 85px);
   width: 100vw;
   background-color: #e8e6df;
   overflow: hidden;
-  /* Không cho scroll toàn trang */
 }
 
 .book-reader-container {
   display: flex;
   flex: 1;
-  /* Tự động chiếm hết chiều cao còn lại bên dưới Header */
   width: 100%;
   background-color: #e8e6df;
-  /* Màu nền riêng cho trang đọc sách */
   overflow: hidden;
   position: relative;
 }

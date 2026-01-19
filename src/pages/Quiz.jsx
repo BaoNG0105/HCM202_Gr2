@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaRedo, FaArrowRight, FaCheck, FaStar, FaFlag } from 'react-icons/fa';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import './Quiz.css';
 
 const Quiz = () => {
@@ -246,11 +244,9 @@ const Quiz = () => {
 
   return (
     <div className="quiz-page-wrapper">
-      <Header />
-      
       <main className="quiz-body">
         <div className="quiz-container">
-          
+
           {/* MÀN HÌNH CHÀO MỪNG */}
           {!isStarted ? (
             <div className="welcome-section">
@@ -260,7 +256,7 @@ const Quiz = () => {
               <h1>Trắc Nghiệm Kiến Thức</h1>
               <h2>Tư Tưởng Hồ Chí Minh về ĐCSVN & Nhà nước của Nhân dân, do Nhân dân, vì Nhân dân</h2>
               <p>
-                Chào mừng bạn đến với bài kiểm tra trắc nghiệm. 
+                Chào mừng bạn đến với bài kiểm tra trắc nghiệm.
                 Bài thi gồm <strong>{questions.length} câu hỏi</strong> trắc nghiệm xoay quanh các nội dung về chương IV của tư tưởng Hồ Chí Minh.
               </p>
               <ul className="quiz-rules">
@@ -273,7 +269,7 @@ const Quiz = () => {
               </button>
             </div>
           ) : showScore ? (
-            
+
             /* MÀN HÌNH KẾT QUẢ */
             <div className="score-section">
               <h2>Kết quả của bạn</h2>
@@ -283,8 +279,8 @@ const Quiz = () => {
               </div>
               <p className="score-text">
                 {finalScore === questions.length ? "Xuất sắc! Bạn đã nắm vững hoàn toàn kiến thức." :
-                 finalScore >= 14 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
-                 "Hãy ôn tập lại Chương 4 và thử lại nhé!"}
+                  finalScore >= 14 ? "Làm tốt lắm! Kiến thức của bạn khá vững." :
+                    "Hãy ôn tập lại Chương 4 và thử lại nhé!"}
               </p>
 
               <div className="score-actions">
@@ -329,16 +325,16 @@ const Quiz = () => {
               </div>
 
               <div className="navigation-footer">
-                <button 
-                  className="btn-nav btn-prev" 
+                <button
+                  className="btn-nav btn-prev"
                   onClick={handlePrevQuestion}
                   disabled={currentQuestion === 0}
                 >
                   <FaArrowLeft /> Quay lại
                 </button>
 
-                <button 
-                  className="btn-nav btn-next" 
+                <button
+                  className="btn-nav btn-next"
                   onClick={handleNextQuestion}
                   disabled={userAnswers[currentQuestion] === null}
                 >
@@ -353,8 +349,6 @@ const Quiz = () => {
           )}
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };

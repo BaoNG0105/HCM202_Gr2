@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import HTMLFlipBook from 'react-pageflip';
 import Page from '../components/Page';
 import './BookReader.css';
-import Header from '../components/Header';
 
 // Import Icons
 import {
@@ -96,7 +95,6 @@ function BookReader() {
 
     return (
         <div className="book-page-layout">
-            <Header />
             <div className="book-reader-container">
 
                 {/* SIDEBAR - MỤC LỤC */}

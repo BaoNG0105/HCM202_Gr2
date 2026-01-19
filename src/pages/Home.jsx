@@ -1,22 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBookOpen, FaQuestionCircle } from 'react-icons/fa'; // Giữ nguyên import icon của bạn
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import MusicPlayer from '../components/MusicPlayer';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <div className="home-container">
-      {/* 1. Header */}
-      <Header />
-
-      {/* Component Music Player */}
-      <MusicPlayer />
-
       {/* --- PHẦN MỚI: VIDEO BACKGROUND --- */}
       <div className="video-background-wrapper">
         <iframe
@@ -82,13 +72,9 @@ const Home = () => {
                 <p>Hãy cùng trò chuyện với AI để tìm hiểu sâu hơn về kiến thức.</p>
               </div>
             </div>
-
           </div>
         </div>
       </main>
-
-      {/* 3. Footer */}
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { FaPaperPlane, FaRobot, FaUser, FaTimes } from 'react-icons/fa';
 import { GoogleGenerativeAI } from "@google/generative-ai"; // Import Gemini
 import { BOOK_CONTENT } from '../data/bookContent'; // Import kiến thức sách
@@ -79,7 +77,6 @@ const Chatbot = () => {
 
   return (
     <div className="chatbot-page">
-      <Header />
       <main className="chatbot-body">
         <div className="chat-container">
           <div className="chat-header">
@@ -128,7 +125,6 @@ const Chatbot = () => {
           </form>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

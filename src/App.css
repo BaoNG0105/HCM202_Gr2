@@ -7,7 +7,7 @@ body {
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #e8e6df; /* Màu nền be xám giống ảnh */
-  overflow: hidden; /* Ẩn thanh cuộn của trình duyệt */
+  overflow: auto; /* Ẩn thanh cuộn của trình duyệt */
 }
 
 .app-container {

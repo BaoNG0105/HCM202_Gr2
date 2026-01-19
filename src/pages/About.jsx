@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import './About.css';
 
 const About = () => {
@@ -13,7 +11,7 @@ const About = () => {
         <>
           <p>Đảng Cộng sản Việt Nam ra đời là sự kết hợp của 3 yếu tố: Chủ nghĩa Mác - Lênin, Phong trào công nhân và Phong trào yêu nước. Đảng đóng vai trò như 'người cầm lái' cho con thuyền cách mạng.</p>
           <blockquote className="quote-box">
-            "Đảng có vững, cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy." 
+            "Đảng có vững, cách mệnh mới thành công, cũng như người cầm lái có vững thuyền mới chạy."
           </blockquote>
         </>
       ),
@@ -28,7 +26,7 @@ const About = () => {
         <>
           <p>Hoạt động dựa trên 5 nguyên tắc: Lấy chủ nghĩa Mác - Lênin làm nền tảng, Tập trung dân chủ, Tự phê bình và phê bình, Kỷ luật nghiêm minh, và Đoàn kết thống nhất.</p>
           <blockquote className="quote-box">
-            "Đảng ta là đạo đức, là văn minh." 
+            "Đảng ta là đạo đức, là văn minh."
           </blockquote>
         </>
       ),
@@ -43,7 +41,7 @@ const About = () => {
         <>
           <p>Nhà nước dân chủ nhân dân, dựa trên liên minh Công - Nông - Trí, do giai cấp công nhân lãnh đạo. Bản chất giai cấp công nhân thống nhất với tính nhân dân và tính dân tộc.</p>
           <blockquote className="quote-box">
-            "Nhà nước của ta là Nhà nước dân chủ nhân dân, dựa trên nền tảng liên minh công nông, do giai cấp công nhân lãnh đạo." 
+            "Nhà nước của ta là Nhà nước dân chủ nhân dân, dựa trên nền tảng liên minh công nông, do giai cấp công nhân lãnh đạo."
           </blockquote>
         </>
       ),
@@ -148,8 +146,6 @@ const About = () => {
 
   return (
     <div className="about-page">
-      <Header />
-
       <main className="about-body">
         <div className="about-hero animate-on-scroll">
           <h1>Tư Tưởng Hồ Chí Minh</h1>
@@ -172,7 +168,7 @@ const About = () => {
                 <img src={item.img} alt={item.title} />
               </div>
             </section>
-            
+
           ))}
 
           {/* --- THÊM PHẦN VIDEO TẠI ĐÂY --- */}
@@ -181,16 +177,16 @@ const About = () => {
               <h2>Tư Liệu Tham Khảo</h2>
               <p>Video tổng hợp kiến thức về Tư tưởng Hồ Chí Minh</p>
             </div>
-            
+
             <div className="video-wrapper">
-              <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/dnMCD3MGGFo?si=cvPAPhKomZNbcWEx" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/dnMCD3MGGFo?si=cvPAPhKomZNbcWEx"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
             </div>
@@ -198,8 +194,6 @@ const About = () => {
           {/* ------------------------------- */}
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

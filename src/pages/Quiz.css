@@ -1,11 +1,11 @@
-/* --- Cấu trúc chung (Đổi nền sang màu kem) --- */
+/* --- Cấu trúc chung --- */
 .quiz-page-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    /* Bỏ min-height: 100vh đi vì App.jsx đã lo việc đó */
+    flex-grow: 1; 
     background-color: #fdfbf7;
-    /* Màu nền kem đồng bộ với About/Home */
-}
+  }
 
 .quiz-body {
     flex: 1;

@@ -1,8 +1,7 @@
 /* --- Cấu trúc chung --- */
 .about-page {
   background-color: #fdfbf7;
-  /* Màu giấy cũ nhẹ nhàng hợp phong cách lịch sử */
-  min-height: 100vh;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
